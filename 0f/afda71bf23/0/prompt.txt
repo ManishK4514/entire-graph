@@ -1,0 +1,189 @@
+confirm first if you can read this:
+v
+
+---
+
+confirm first if you can read this:
+
+https://docs.google.com/document/u/0/d/REDACTED/mobilebasic
+
+---
+
+great now load this into context that it:
+
+
+Bengaluru Tech Week	
+MastryHub
+12:00 : The Noon Curveball is live. Stop, checkpoint, restart your agent.
+Bengaluru Tech Week
+
+Teams,
+
+The Noon Curveball is now live. A new constraint has been introduced for every track.
+
+Before you change any code:
+Stop implementation.
+
+Commit your last stable version.
+
+Confirm Entire created a Checkpoint (entire status).
+
+End your current agent session.
+
+Read your track's card below.
+
+Start a FRESH agent session.
+
+Use your pre-curveball Checkpoint to reconstruct your intent, architecture, completed work, and open risks in that new session.
+
+Run Entire Graph impact analysis BEFORE editing.
+
+Implement and test the new requirement.
+
+Create a final Checkpoint explaining your revised design.
+
+
+Update your implementation, add appropriate tests, and preserve existing working behaviour.
+
+Your final submission must explain what assumption changed, how your design changed, and why the new result is safe.
+
+
+TRACK 1: PRIVACY BOUNDARY
+Your Checkpoint-native experience must now work with sensitive repositories.
+
+The security team has introduced these requirements:
+
+Raw prompts and transcripts must not be sent to a new external service.
+
+The product must continue to provide useful output when sensitive fields are redacted or unavailable.
+
+Existing local functionality must continue to work.
+
+The interface must clearly distinguish between complete and incomplete context.
+
+You must include at least one test using redacted or missing Checkpoint data.
+
+Use Entire Graph to identify every code path affected by this privacy boundary.
+
+Your product must never present incomplete context as a complete or authoritative result.
+
+A redacted Checkpoint fixture is attached.
+
+
+TRACK 2: GRAPH IS EVIDENCE, NOT AN ORACLE
+Your Graph-powered experience has encountered a repository using dynamic dispatch, generated code, reflection, or another pattern that static analysis cannot fully resolve.
+
+The new requirements:
+
+The product must not present incomplete Graph relationships as certain.
+
+It must identify when analysis may be partial.
+
+It must provide a safe fallback or verification path.
+
+Existing behaviour for fully resolved code must continue to work.
+
+You must include a test or fixture representing incomplete analysis.
+
+Use Entire Graph to identify which parts of your implementation consume relationship, impact, or semantic diff evidence.
+
+Users and agents must be able to tell apart:
+
+Confirmed structural evidence
+
+Heuristic or incomplete evidence
+
+Claims that require source or test verification
+
+A partial analysis repository fixture is attached.
+
+
+TRACK 3: THE AGENT CHANGED ITS FORMAT
+The agent or workflow you integrated has released a new transcript and lifecycle event format. Existing users still produce the original format.
+
+The new requirements:
+
+The integration must support both the original and the new format.
+
+Unknown events must not crash the integration.
+
+An incomplete transcript must produce a partial result, not a corrupted or discarded session.
+
+Existing Checkpoint behaviour must remain compatible.
+
+Tests must cover:
+
+Original format
+
+New format
+
+Unknown events
+
+Incomplete input
+
+Use Entire Graph to identify every parser, lifecycle handler, summary path, and Checkpoint writing path affected.
+
+Do not duplicate the entire implementation for each format.
+
+A JSONL fixture representing the new format is attached. Check with your mentor that you have the one matching your integration.
+
+
+HOW THIS IS SCORED - 15 POINTS
+We are looking for:
+
+A fresh session that reconstructs earlier work from Checkpoint context
+
+Graph impact analysis run before editing
+
+A clear statement of which assumption the curveball invalidated
+
+A focused revision that preserves existing behaviour
+
+Tests for the new behaviour
+
+A final Checkpoint explaining the adaptation
+
+Graph use that happens after implementation, or an explanation given verbally rather than captured in context, scores in the partial band.
+
+LFG! Stay tuned for updates.
+
+This message was sent to all Bengaluru Tech Week participants. GM!
+
+---
+
+just read what i send, i would further send actionable steps
+
+---
+
+okay so i completely lost while building with agent, so first tell me what has been built so far, what the progress, what we want to achieve and what are the next actionable steps for me.
+
+i am completely lost, i don't know anything
+
+tell me in simplest possible terms, don't complicate
+
+---
+
+so claude code is running in another terminal since you last cheked, should i stop over there and finish whatever lef here?
+
+---
+
+what should i do?
+
+---
+
+Decisions made, with the alternatives we rejected
+Rejected: "LoanLens", a borrower-facing loan-document analyser. It solves an end-user problem rather than a developer problem and uses no graph evidence, so it fails the qualification rule ("adding Entire only for tracking … will not qualify"). What survived from it is the domain, the RBI rulebook, and the principle that the model extracts while the code computes the verdict.
+Rejected: using entire graph impact alone as the engine. It is the obvious choice and it is bounded at depth ≤ 2 by design. The regulated chain in our fixture is five hops. We will stream the full relation set with entire graph edges and run our own reverse BFS, using impact as an independent second opinion where the two overlap.
+Rejected: a generic "this change is big" risk score. Structural reach alone cannot distinguish renaming a private SMS formatter from changing the number a borrower is legally entitled to see. The RBI rule layer is what makes the score mean something.
+Chosen: degrade loudly, never silently. If the graph is unavailable the report says on its face that findings are single-sourced. A partial blast radius presented as a complete one reads exactly like "safe to merge", which is the most dangerous possible failure for this product.
+
+
+why these things are there, it is my decision for the hackathon right, so can't we keep checkpoints as what actually related to the final product?
+
+---
+
+for all checkpoints?
+
+---
+
+what's the other session doing? why not commiting what should i do?

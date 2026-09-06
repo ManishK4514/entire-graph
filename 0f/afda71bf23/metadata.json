@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "0fafda71bf23",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 7,
+  "files_touched": [
+    "BUILDATHON.md",
+    "Makefile",
+    "blastradius/adapters/entire_graph.py",
+    "blastradius/adapters/local_ast.py",
+    "blastradius/cli.py",
+    "blastradius/core/evidence.py",
+    "blastradius/core/graph_model.py",
+    "blastradius/core/impact.py",
+    "blastradius/core/risk.py",
+    "blastradius/render/cli_report.py",
+    "docs/checkpoints/04-final-implementation.md",
+    "docs/graph-evidence/01-search-penal-charge.txt",
+    "docs/graph-evidence/03-impact-pre-change.json",
+    "docs/graph-evidence/03-impact-pre-change.txt",
+    "docs/graph-evidence/03b-neighbors-callers.txt",
+    "docs/graph-evidence/06-final-semantic-diff.json",
+    "docs/graph-evidence/07-blast-radius-report.txt",
+    "docs/graph-evidence/11-curveball-dynamic-graph.txt",
+    "scripts/capture-graph-evidence.sh"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0f/afda71bf23/0/metadata.json",
+      "transcript": "/0f/afda71bf23/0/full.jsonl",
+      "compact_transcript": "/0f/afda71bf23/0/transcript.jsonl",
+      "content_hash": "/0f/afda71bf23/0/content_hash.txt",
+      "prompt": "/0f/afda71bf23/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 40,
+    "cache_creation_tokens": 63883,
+    "cache_read_tokens": 1193999,
+    "output_tokens": 18924,
+    "api_call_count": 20
+  }
+}
