@@ -502,8 +502,9 @@ person.
 `Co-Authored-By` trailer that was removed at the author's request, so their SHAs are
 now `f8c1dae` and `3a82dbc`. Entire re-resolved checkpoints `92f99349fbfe` and
 `c318df27e970` to the new SHAs on its own — which is a fair demonstration that the
-records are not just text pasted into a commit message. `origin/blast-radius` still
-points at the pre-rewrite history and needs a force-push to match.
+records are not just text pasted into a commit message. `origin/blast-radius` was then
+force-pushed to match and now tracks local `main`; compare them with
+`git rev-parse main origin/blast-radius` rather than trusting a SHA typed here.
 
 **The first checkpoint this repository has ever recorded is `92f99349fbfe`**, minted by the
 commit that added this section (`f8c1dae`, formerly `09512de` — see above). It is the worked example of the paragraph above:
@@ -511,9 +512,8 @@ nothing here typed it, the hook stamped the trailer, and `entire checkpoint list
 whether or not this document mentions it.
 
 `origin/main` is still the upstream fork point `3a2a715`: the branch is protected and the
-push was refused, so the submission lives on `origin/blast-radius` — which, after the
-history rewrite described above, needs `git push --force origin main:refs/heads/blast-radius`
-to match local `main` — with the demo
+push was refused, so the submission lives on `origin/blast-radius`, which is in sync with
+local `main` — with the demo
 change on `origin/demo/penal-charge-fix` (`aa8f3b6`, tagged `demo-after`). A judge who
 clones and stays on `main` sees none of this work. The three tags are lightweight, so
 `--follow-tags` does not carry them; they were pushed by explicit ref.
