@@ -1,0 +1,2510 @@
+{
+  "base": "upstream-base",
+  "head": "HEAD",
+  "files": [
+    {
+      "path": ".claude/settings.json",
+      "status": "M",
+      "language": "JSON",
+      "changes": [
+        {
+          "type": "removed",
+          "kind": "section",
+          "name": "permissions",
+          "old_signature": "json key permissions",
+          "before_start_line": 90,
+          "dependents_count": 10
+        },
+        {
+          "type": "removed",
+          "kind": "section",
+          "name": "deny",
+          "old_signature": "json key deny",
+          "before_start_line": 91,
+          "dependents_count": 12
+        }
+      ]
+    },
+    {
+      "path": ".gitignore",
+      "status": "M",
+      "language": "Git Ignore",
+      "changes": [
+        {
+          "type": "body_changed",
+          "kind": "document",
+          "name": ".gitignore",
+          "before_start_line": 1,
+          "after_start_line": 1,
+          "dependents_count": 89
+        }
+      ]
+    },
+    {
+      "path": "BUILDATHON.md",
+      "status": "A",
+      "language": "Markdown",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Blast-Radius",
+          "new_signature": "markdown heading Blast Radius",
+          "after_start_line": 1,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "One-sentence-summary",
+          "new_signature": "markdown heading One-sentence summary",
+          "after_start_line": 5,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Problem-intended-user-and-why-it-matters",
+          "new_signature": "markdown heading Problem, intended user and why it matters",
+          "after_start_line": 13,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_1_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 28,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_2_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 38,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Selected-Entire-track-and-why-Entire-is-essential",
+          "new_signature": "markdown heading Selected Entire track and why Entire is essential",
+          "after_start_line": 40,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Architecture-and-main-workflow",
+          "new_signature": "markdown heading Architecture and main workflow",
+          "after_start_line": 62,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_3_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 64,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_4_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 83,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Four-invariants",
+          "new_signature": "markdown heading Four invariants",
+          "after_start_line": 90,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "The-risk-model-blastradius/core/risk.py",
+          "new_signature": "markdown heading The risk model (`blastradius/core/risk.py`)",
+          "after_start_line": 104,
+          "dependents_count": 348
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_5_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 106,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_6_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 114,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Entire-Graph-findings-and-verification",
+          "new_signature": "markdown heading Entire Graph findings and verification",
+          "after_start_line": 130,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Finding-1-the-graph-s-DATA_FLOWS-relation-carries-two-opposite-orientations",
+          "new_signature": "markdown heading Finding 1 — the graph's DATA_FLOWS relation carries two opposite orientations",
+          "after_start_line": 147,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_7_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 155,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_8_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 158,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Finding-2-completeness-has-to-be-scoped-to-the-analysed-subtree-not-just-reported",
+          "new_signature": "markdown heading Finding 2 — completeness has to be scoped to the analysed subtree, not just reported",
+          "after_start_line": 170,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_9_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 183,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_10_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 186,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_11_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 194,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_12_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 198,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Finding-3-ranked-search-over-a-polyglot-fork-is-honest-about-not-knowing",
+          "new_signature": "markdown heading Finding 3 — ranked search over a polyglot fork is honest about not knowing",
+          "after_start_line": 208,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Verification-end-to-end",
+          "new_signature": "markdown heading Verification, end to end",
+          "after_start_line": 216,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Noon-Curveball:-what-changed-and-how-we-adapted",
+          "new_signature": "markdown heading Noon Curveball: what changed and how we adapted",
+          "after_start_line": 234,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Checkpoint-links-and-what-each-checkpoint-proves",
+          "new_signature": "markdown heading Checkpoint links and what each checkpoint proves",
+          "after_start_line": 246,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Setup-run-and-test-instructions",
+          "new_signature": "markdown heading Setup, run and test instructions",
+          "after_start_line": 257,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_13_bash",
+          "new_signature": "markdown code fence bash",
+          "after_start_line": 259,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Entire-Graph-provider.-The-adapter-prefers-the-official-plugin-and-falls-back",
+          "new_signature": "markdown heading Entire Graph provider. The adapter prefers the official plugin and falls back",
+          "after_start_line": 262,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "to-a-locally-built-one-only-if-the-Entire-CLI-is-absent.",
+          "new_signature": "markdown heading to a locally built one only if the Entire CLI is absent.",
+          "after_start_line": 263,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_14_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 272,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_15_bash",
+          "new_signature": "markdown code fence bash",
+          "after_start_line": 276,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_16_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 279,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Databricks-use-data-sources-and-limitations",
+          "new_signature": "markdown heading Databricks use, data sources and limitations",
+          "after_start_line": 281,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Known-limitations-and-next-steps",
+          "new_signature": "markdown heading Known limitations and next steps",
+          "after_start_line": 291,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Honesty-notes",
+          "new_signature": "markdown heading Honesty notes",
+          "after_start_line": 320,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "Makefile",
+      "status": "A",
+      "language": "Make",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "PY",
+          "new_signature": "make target PY",
+          "after_start_line": 1,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "SR",
+          "new_signature": "make target SR",
+          "after_start_line": 2,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "setup",
+          "new_signature": "make target setup",
+          "after_start_line": 4,
+          "dependents_count": 44
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "graph-bin",
+          "new_signature": "make target graph-bin",
+          "after_start_line": 9,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "test",
+          "new_signature": "make target test",
+          "after_start_line": 13,
+          "dependents_count": 1079
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "demo-green",
+          "new_signature": "make target demo-green",
+          "after_start_line": 18,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "demo-amber",
+          "new_signature": "make target demo-amber",
+          "after_start_line": 21,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "demo-red",
+          "new_signature": "make target demo-red",
+          "after_start_line": 24,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "demo-diff",
+          "new_signature": "make target demo-diff",
+          "after_start_line": 29,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "demo",
+          "new_signature": "make target demo",
+          "after_start_line": 33,
+          "dependents_count": 39
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "gate",
+          "new_signature": "make target gate",
+          "after_start_line": 36,
+          "dependents_count": 37
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": "evidence",
+          "new_signature": "make target evidence",
+          "after_start_line": 40,
+          "dependents_count": 247
+        },
+        {
+          "type": "added",
+          "kind": "target",
+          "name": ".PHONY",
+          "new_signature": "make target .PHONY",
+          "after_start_line": 43,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "blastradius/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/adapters/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "blastradius/adapters/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/adapters/entire_graph.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "_orient",
+          "new_signature": "def _orient(from_symbol: str, to_symbol: str, relation: str, reason: str) -\u003e tuple",
+          "after_start_line": 91,
+          "dependents_count": 6
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "EntireGraphUnavailable",
+          "new_signature": "class EntireGraphUnavailable(RuntimeError)",
+          "after_start_line": 103,
+          "dependents_count": 9
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "EntireGraphSchemaMismatch",
+          "new_signature": "class EntireGraphSchemaMismatch(EntireGraphUnavailable)",
+          "after_start_line": 107,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "resolve_invocation",
+          "new_signature": "def resolve_invocation(explicit: Optional[str] = None) -\u003e list",
+          "after_start_line": 111,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "_module_of",
+          "new_signature": "def _module_of(file_path: str, source_root: str) -\u003e Optional[str]",
+          "after_start_line": 144,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "parse_symbol_id",
+          "new_signature": "def parse_symbol_id(symbol_id: str, source_root: str) -\u003e Optional[str]",
+          "after_start_line": 163,
+          "dependents_count": 8
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "symbol_id_file",
+          "new_signature": "def symbol_id_file(symbol_id: str) -\u003e Optional[str]",
+          "after_start_line": 190,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "GraphRun",
+          "new_signature": "class GraphRun",
+          "after_start_line": 199,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "GraphRun.cite",
+          "new_signature": "def cite(self) -\u003e str",
+          "after_start_line": 214,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "GraphRun.failures_in",
+          "new_signature": "def failures_in(self, source_root: str) -\u003e list",
+          "after_start_line": 217,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "GraphRun.scope_note",
+          "new_signature": "def scope_note(self, source_root: str) -\u003e str",
+          "after_start_line": 235,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "EntireGraphAdapter",
+          "new_signature": "class EntireGraphAdapter",
+          "after_start_line": 249,
+          "dependents_count": 7
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.__init__",
+          "new_signature": "def __init__( self, repo: str, source_root: str = \"\", binary: Optional[str] = None, worktree: bool = True, timeout: int = 180, profile: str = \"full\", )",
+          "after_start_line": 252,
+          "dependents_count": 46
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter._argv",
+          "new_signature": "def _argv(self, *args: str) -\u003e list",
+          "after_start_line": 271,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter._run",
+          "new_signature": "def _run(self, *args: str) -\u003e subprocess.CompletedProcess",
+          "after_start_line": 274,
+          "dependents_count": 10
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter._check_schema",
+          "new_signature": "def _check_schema(self, header: dict) -\u003e None",
+          "after_start_line": 294,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.capabilities",
+          "new_signature": "def capabilities(self) -\u003e dict",
+          "after_start_line": 307,
+          "dependents_count": 24
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.semantic_languages",
+          "new_signature": "def semantic_languages(self) -\u003e list",
+          "after_start_line": 315,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter._stream",
+          "new_signature": "def _stream(self, mode: str, *extra: str) -\u003e Iterator[dict]",
+          "after_start_line": 321,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.edges",
+          "new_signature": "def edges(self, relations: tuple = IMPACT_RELATIONS) -\u003e list",
+          "after_start_line": 361,
+          "dependents_count": 104
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.impact",
+          "new_signature": "def impact(self, symbol: str, depth: int = 2, limit: int = 50) -\u003e dict",
+          "after_start_line": 416,
+          "dependents_count": 39
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.impact_callers",
+          "new_signature": "def impact_callers(self, symbol: str, depth: int = 2) -\u003e dict",
+          "after_start_line": 436,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.changed_symbols",
+          "new_signature": "def changed_symbols(self, base: str, head: str = \"HEAD\") -\u003e list",
+          "after_start_line": 450,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "EntireGraphAdapter.raw_diff",
+          "new_signature": "def raw_diff(self, base: str, head: str = \"HEAD\") -\u003e str",
+          "after_start_line": 483,
+          "dependents_count": 1
+        }
+      ]
+    },
+    {
+      "path": "blastradius/adapters/local_ast.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "LocalAstResolver",
+          "new_signature": "class LocalAstResolver",
+          "after_start_line": 20,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver.__init__",
+          "new_signature": "def __init__(self, root: str)",
+          "after_start_line": 21,
+          "dependents_count": 46
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver._module_name",
+          "new_signature": "def _module_name(self, path: str) -\u003e str",
+          "after_start_line": 28,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver._py_files",
+          "new_signature": "def _py_files(self)",
+          "after_start_line": 34,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver.collect_definitions",
+          "new_signature": "def collect_definitions(self) -\u003e dict",
+          "after_start_line": 42,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver._defs_in",
+          "new_signature": "def _defs_in(self, body, prefix: str)",
+          "after_start_line": 62,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver.edges",
+          "new_signature": "def edges(self) -\u003e list",
+          "after_start_line": 75,
+          "dependents_count": 104
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver._import_aliases",
+          "new_signature": "def _import_aliases(self, tree, module: str) -\u003e dict",
+          "after_start_line": 131,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver._calls_in",
+          "new_signature": "def _calls_in(self, node, aliases: dict, module: str)",
+          "after_start_line": 144,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver._call_name",
+          "new_signature": "def _call_name(func)",
+          "after_start_line": 156,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "LocalAstResolver._resolve",
+          "new_signature": "def _resolve(self, name: str, aliases: dict, module: str)",
+          "after_start_line": 170,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "blastradius/adapters/rules.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Surface",
+          "new_signature": "class Surface",
+          "after_start_line": 19,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "Surface.matches",
+          "new_signature": "def matches(self, symbol: str) -\u003e bool",
+          "after_start_line": 29,
+          "dependents_count": 136
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "ScheduledConsumer",
+          "new_signature": "class ScheduledConsumer",
+          "after_start_line": 38,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "RuleBook",
+          "new_signature": "class RuleBook",
+          "after_start_line": 45,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "RuleBook.load",
+          "new_signature": "def load(cls, path: str = None) -\u003e \"RuleBook\"",
+          "after_start_line": 51,
+          "dependents_count": 50
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "RuleBook.surfaces_for",
+          "new_signature": "def surfaces_for(self, symbol: str) -\u003e list",
+          "after_start_line": 71,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "RuleBook.consumer_for",
+          "new_signature": "def consumer_for(self, symbol: str)",
+          "after_start_line": 74,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "RuleBook.provenance",
+          "new_signature": "def provenance(self, surface: Surface) -\u003e Provenance",
+          "after_start_line": 81,
+          "dependents_count": 69
+        }
+      ]
+    },
+    {
+      "path": "blastradius/cli.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "build_graph",
+          "new_signature": "def build_graph(repo: str, source_root: str, use_graph: bool = True, graph_bin: str = None, relations: tuple = None) -\u003e tuple",
+          "after_start_line": 26,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "resolve_changed",
+          "new_signature": "def resolve_changed(args, repo: str, source_root: str) -\u003e tuple",
+          "after_start_line": 72,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "cmd_impact",
+          "new_signature": "def cmd_impact(args) -\u003e int",
+          "after_start_line": 86,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "main",
+          "new_signature": "def main(argv=None) -\u003e int",
+          "after_start_line": 137,
+          "dependents_count": 204
+        }
+      ]
+    },
+    {
+      "path": "blastradius/core/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "blastradius/core/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/core/evidence.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Source",
+          "new_signature": "class Source(str, Enum)",
+          "after_start_line": 18,
+          "dependents_count": 21
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Verification",
+          "new_signature": "class Verification(str, Enum)",
+          "after_start_line": 26,
+          "dependents_count": 13
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Provenance",
+          "new_signature": "class Provenance",
+          "after_start_line": 33,
+          "dependents_count": 12
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "Provenance.location",
+          "new_signature": "def location(self) -\u003e str",
+          "after_start_line": 50,
+          "dependents_count": 39
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Edge",
+          "new_signature": "class Edge",
+          "after_start_line": 57,
+          "dependents_count": 8
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "Edge.key",
+          "new_signature": "def key(self) -\u003e tuple",
+          "after_start_line": 72,
+          "dependents_count": 323
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Finding",
+          "new_signature": "class Finding",
+          "after_start_line": 77,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "Finding.is_assertable",
+          "new_signature": "def is_assertable(self) -\u003e bool",
+          "after_start_line": 87,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "to_dict",
+          "new_signature": "def to_dict(obj) -\u003e dict",
+          "after_start_line": 95,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "blastradius/core/graph_model.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "SymbolGraph",
+          "new_signature": "class SymbolGraph",
+          "after_start_line": 17,
+          "dependents_count": 6
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "SymbolGraph.add",
+          "new_signature": "def add(self, edge: Edge) -\u003e None",
+          "after_start_line": 23,
+          "dependents_count": 453
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "SymbolGraph.find",
+          "new_signature": "def find(self, caller: str, callee: str)",
+          "after_start_line": 44,
+          "dependents_count": 42
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "SymbolGraph.callers_of",
+          "new_signature": "def callers_of(self, symbol: str) -\u003e list",
+          "after_start_line": 50,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "SymbolGraph.symbols",
+          "new_signature": "def symbols(self) -\u003e set",
+          "after_start_line": 53,
+          "dependents_count": 258
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "SymbolGraph.reachable_from",
+          "new_signature": "def reachable_from(self, roots, max_hops: int = 6) -\u003e dict",
+          "after_start_line": 56,
+          "dependents_count": 3
+        }
+      ]
+    },
+    {
+      "path": "blastradius/core/impact.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "ImpactReport",
+          "new_signature": "class ImpactReport",
+          "after_start_line": 13,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "ImpactReport.to_dict",
+          "new_signature": "def to_dict(self) -\u003e dict",
+          "after_start_line": 27,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "analyse",
+          "new_signature": "def analyse(graph: SymbolGraph, rulebook, changed: list, max_hops: int = 8) -\u003e ImpactReport",
+          "after_start_line": 31,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "blastradius/core/risk.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Term",
+          "new_signature": "class Term",
+          "after_start_line": 26,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "RiskResult",
+          "new_signature": "class RiskResult",
+          "after_start_line": 34,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "RiskResult.explain",
+          "new_signature": "def explain(self) -\u003e list",
+          "after_start_line": 39,
+          "dependents_count": 16
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "band_for",
+          "new_signature": "def band_for(score: int) -\u003e str",
+          "after_start_line": 43,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "score_change",
+          "new_signature": "def score_change( *, critical_surfaces: list, high_surfaces: list, scheduled_jobs: list, hop1_symbols: list, deeper_symbols: list, changed_symbols_without_tests: list, all_surfaces_have_tests: bool, ) -\u003e RiskResult",
+          "after_start_line": 50,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "blastradius/core/tests_select.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "is_test_symbol",
+          "new_signature": "def is_test_symbol(symbol: str) -\u003e bool",
+          "after_start_line": 9,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "select",
+          "new_signature": "def select(reachable: dict, changed: list) -\u003e dict",
+          "after_start_line": 15,
+          "dependents_count": 55
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "symbols_without_tests",
+          "new_signature": "def symbols_without_tests(changed: list, reachable: dict) -\u003e list",
+          "after_start_line": 36,
+          "dependents_count": 1
+        }
+      ]
+    },
+    {
+      "path": "blastradius/render/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "blastradius/render/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/render/cli_report.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "_c",
+          "new_signature": "def _c(text: str, code: str) -\u003e str",
+          "after_start_line": 10,
+          "dependents_count": 1
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "render",
+          "new_signature": "def render(report: dict) -\u003e str",
+          "after_start_line": 23,
+          "dependents_count": 69
+        }
+      ]
+    },
+    {
+      "path": "blastradius/rules/rbi_surfaces.yaml",
+      "status": "A",
+      "language": "YAML",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "version",
+          "new_signature": "section version",
+          "after_start_line": 12,
+          "dependents_count": 715
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "surfaces",
+          "new_signature": "section surfaces",
+          "after_start_line": 14,
+          "dependents_count": 15
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "scheduled_consumers",
+          "new_signature": "section scheduled_consumers",
+          "after_start_line": 113,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "blastradius/tests/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "blastradius/tests/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/tests/test_entire_graph_adapter.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_provider_symbol_id_becomes_a_dotted_symbol",
+          "new_signature": "def test_a_provider_symbol_id_becomes_a_dotted_symbol()",
+          "after_start_line": 36,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_method_keeps_its_class_qualifier",
+          "new_signature": "def test_a_method_keeps_its_class_qualifier()",
+          "after_start_line": 40,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_dunder_init_collapses_into_its_package",
+          "new_signature": "def test_dunder_init_collapses_into_its_package()",
+          "after_start_line": 47,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_external_symbols_are_not_in_our_blast_radius",
+          "new_signature": "def test_external_symbols_are_not_in_our_blast_radius()",
+          "after_start_line": 51,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_files_outside_the_source_root_are_ignored",
+          "new_signature": "def test_files_outside_the_source_root_are_ignored()",
+          "after_start_line": 57,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_malformed_id_is_dropped_not_guessed",
+          "new_signature": "def test_a_malformed_id_is_dropped_not_guessed()",
+          "after_start_line": 61,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_the_file_path_is_recoverable_for_citation",
+          "new_signature": "def test_the_file_path_is_recoverable_for_citation()",
+          "after_start_line": 66,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_module_of_rejects_non_python",
+          "new_signature": "def test_module_of_rejects_non_python()",
+          "after_start_line": 71,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_calls_are_already_in_dependency_order",
+          "new_signature": "def test_calls_are_already_in_dependency_order()",
+          "after_start_line": 85,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_return_value_data_flow_is_inverted",
+          "new_signature": "def test_a_return_value_data_flow_is_inverted()",
+          "after_start_line": 89,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_forwarded_parameter_data_flow_is_not_inverted",
+          "new_signature": "def test_a_forwarded_parameter_data_flow_is_not_inverted()",
+          "after_start_line": 97,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_an_unrecognised_data_flow_reason_keeps_the_stated_direction",
+          "new_signature": "def test_an_unrecognised_data_flow_reason_keeps_the_stated_direction()",
+          "after_start_line": 103,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_an_unknown_schema_major_is_refused_not_guessed",
+          "new_signature": "def test_an_unknown_schema_major_is_refused_not_guessed(tmp_path)",
+          "after_start_line": 110,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_missing_provider_raises_rather_than_returning_an_empty_radius",
+          "new_signature": "def test_a_missing_provider_raises_rather_than_returning_an_empty_radius(monkeypatch)",
+          "after_start_line": 119,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_an_explicit_binary_that_is_not_executable_is_rejected",
+          "new_signature": "def test_an_explicit_binary_that_is_not_executable_is_rejected(tmp_path)",
+          "after_start_line": 129,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "_provider_available",
+          "new_signature": "def _provider_available() -\u003e bool",
+          "after_start_line": 138,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_the_provider_reports_python_as_semantically_analysed",
+          "new_signature": "def test_the_provider_reports_python_as_semantically_analysed()",
+          "after_start_line": 150,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_the_provider_finds_the_real_callers_of_penal_charge",
+          "new_signature": "def test_the_provider_finds_the_real_callers_of_penal_charge()",
+          "after_start_line": 159,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_every_graph_edge_carries_a_clickable_citation",
+          "new_signature": "def test_every_graph_edge_carries_a_clickable_citation()",
+          "after_start_line": 170,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_our_traversal_agrees_with_the_providers_own_impact_command",
+          "new_signature": "def test_our_traversal_agrees_with_the_providers_own_impact_command()",
+          "after_start_line": 179,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/tests/test_risk.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "surface",
+          "new_signature": "def surface(sid, severity=\"critical\")",
+          "after_start_line": 7,
+          "dependents_count": 45
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "job",
+          "new_signature": "def job(name)",
+          "after_start_line": 11,
+          "dependents_count": 56
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "base",
+          "new_signature": "def base(**kw)",
+          "after_start_line": 15,
+          "dependents_count": 323
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_change_that_touches_nothing_is_low",
+          "new_signature": "def test_a_change_that_touches_nothing_is_low()",
+          "after_start_line": 25,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_reaching_a_critical_regulated_surface_dominates_the_score",
+          "new_signature": "def test_reaching_a_critical_regulated_surface_dominates_the_score()",
+          "after_start_line": 30,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_scoring_is_deterministic",
+          "new_signature": "def test_scoring_is_deterministic()",
+          "after_start_line": 35,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_every_term_is_explained",
+          "new_signature": "def test_every_term_is_explained()",
+          "after_start_line": 41,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_test_coverage_reduces_the_score",
+          "new_signature": "def test_test_coverage_reduces_the_score()",
+          "after_start_line": 47,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_untested_change_is_penalised",
+          "new_signature": "def test_untested_change_is_penalised()",
+          "after_start_line": 52,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_score_is_clamped_to_a_hundred",
+          "new_signature": "def test_score_is_clamped_to_a_hundred()",
+          "after_start_line": 56,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_bands_have_no_gaps",
+          "new_signature": "def test_bands_have_no_gaps()",
+          "after_start_line": 64,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "blastradius/tests/test_verification.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "edge",
+          "new_signature": "def edge(caller, callee, source, line=1)",
+          "after_start_line": 6,
+          "dependents_count": 204
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_a_single_source_edge_stays_unverified",
+          "new_signature": "def test_a_single_source_edge_stays_unverified()",
+          "after_start_line": 10,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_the_same_source_twice_is_not_verification",
+          "new_signature": "def test_the_same_source_twice_is_not_verification()",
+          "after_start_line": 16,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_two_independent_sources_verify_an_edge",
+          "new_signature": "def test_two_independent_sources_verify_an_edge()",
+          "after_start_line": 25,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_traversal_returns_the_proof_path",
+          "new_signature": "def test_traversal_returns_the_proof_path()",
+          "after_start_line": 33,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/checkpoints/01-initial-understanding.md",
+      "status": "A",
+      "language": "Markdown",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Checkpoint-1-Initial-understanding-and-intended-architecture",
+          "new_signature": "markdown heading Checkpoint 1 — Initial understanding and intended architecture",
+          "after_start_line": 1,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "What-we-are-building-and-for-whom",
+          "new_signature": "markdown heading What we are building and for whom",
+          "after_start_line": 3,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "The-architecture-we-intend-and-why",
+          "new_signature": "markdown heading The architecture we intend, and why",
+          "after_start_line": 14,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Decisions-made-with-the-alternatives-we-rejected",
+          "new_signature": "markdown heading Decisions made, with the alternatives we rejected",
+          "after_start_line": 31,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Assumptions-we-are-making",
+          "new_signature": "markdown heading Assumptions we are making",
+          "after_start_line": 50,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Open-risks-at-this-point",
+          "new_signature": "markdown heading Open risks at this point",
+          "after_start_line": 61,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Disclosure",
+          "new_signature": "markdown heading Disclosure",
+          "after_start_line": 69,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/checkpoints/02-pre-curveball-stable.md",
+      "status": "A",
+      "language": "Markdown",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Checkpoint-2-Last-stable-state-before-the-Noon-Curveball",
+          "new_signature": "markdown heading Checkpoint 2 — Last stable state before the Noon Curveball",
+          "after_start_line": 1,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Current-intent-unchanged-from-Checkpoint-1",
+          "new_signature": "markdown heading Current intent (unchanged from Checkpoint 1)",
+          "after_start_line": 3,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "What-is-completed-and-working",
+          "new_signature": "markdown heading What is completed and working",
+          "after_start_line": 9,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "The-evidence-that-changed-our-approach",
+          "new_signature": "markdown heading The evidence that changed our approach",
+          "after_start_line": 26,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "What-is-deliberately-unfinished",
+          "new_signature": "markdown heading What is deliberately unfinished",
+          "after_start_line": 59,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Open-technical-risks",
+          "new_signature": "markdown heading Open technical risks",
+          "after_start_line": 68,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Where-the-seams-are-if-the-Curveball-hits-the-architecture",
+          "new_signature": "markdown heading Where the seams are, if the Curveball hits the architecture",
+          "after_start_line": 80,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/README.md",
+      "status": "A",
+      "language": "Markdown",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "fixtures/lending-platform",
+          "new_signature": "markdown heading fixtures/lending-platform",
+          "after_start_line": 1,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_1_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 10,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_2_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 23,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "The-two-demo-changes",
+          "new_signature": "markdown heading The two demo changes",
+          "after_start_line": 25,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Run",
+          "new_signature": "markdown heading Run",
+          "after_start_line": 36,
+          "dependents_count": 561
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_3_bash",
+          "new_signature": "markdown code fence bash",
+          "after_start_line": 38,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_4_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 40,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/core/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "fixtures/lending-platform/core/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/core/loan.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "class",
+          "name": "Loan",
+          "new_signature": "class Loan",
+          "after_start_line": 9,
+          "dependents_count": 26
+        },
+        {
+          "type": "added",
+          "kind": "method",
+          "name": "Loan.net_disbursal",
+          "new_signature": "def net_disbursal(self) -\u003e Decimal",
+          "after_start_line": 22,
+          "dependents_count": 8
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/core/money.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "to_money",
+          "new_signature": "def to_money(value) -\u003e Decimal",
+          "after_start_line": 7,
+          "dependents_count": 17
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "pct",
+          "new_signature": "def pct(amount, rate_pct) -\u003e Decimal",
+          "after_start_line": 12,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "annualise_monthly",
+          "new_signature": "def annualise_monthly(monthly_rate_pct) -\u003e Decimal",
+          "after_start_line": 17,
+          "dependents_count": 1
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/disclosure/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "fixtures/lending-platform/disclosure/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/disclosure/kfs.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "cooling_off_days",
+          "new_signature": "def cooling_off_days(loan: Loan) -\u003e int",
+          "after_start_line": 17,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "penal_illustration",
+          "new_signature": "def penal_illustration(loan: Loan) -\u003e dict",
+          "after_start_line": 23,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "generate_kfs",
+          "new_signature": "def generate_kfs(loan: Loan) -\u003e dict",
+          "after_start_line": 33,
+          "dependents_count": 8
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "render_kfs_text",
+          "new_signature": "def render_kfs_text(loan: Loan) -\u003e str",
+          "after_start_line": 50,
+          "dependents_count": 3
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/disclosure/sanction_letter.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "generate_sanction_letter",
+          "new_signature": "def generate_sanction_letter(loan: Loan) -\u003e dict",
+          "after_start_line": 6,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "charges_match_kfs",
+          "new_signature": "def charges_match_kfs(loan: Loan) -\u003e bool",
+          "after_start_line": 17,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/jobs/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "fixtures/lending-platform/jobs/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/jobs/daily_kfs_batch.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "run",
+          "new_signature": "def run(loans: list) -\u003e list",
+          "after_start_line": 9,
+          "dependents_count": 505
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/jobs/monthly_rbi_return.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "run",
+          "new_signature": "def run(loans: list) -\u003e dict",
+          "after_start_line": 8,
+          "dependents_count": 505
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/jobs/nightly_bureau_push.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "run",
+          "new_signature": "def run(loans: list) -\u003e list",
+          "after_start_line": 8,
+          "dependents_count": 505
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/pricing/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "fixtures/lending-platform/pricing/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/pricing/fees.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "processing_fee",
+          "new_signature": "def processing_fee(loan: Loan) -\u003e Decimal",
+          "after_start_line": 8,
+          "dependents_count": 6
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "penal_charge",
+          "new_signature": "def penal_charge(loan: Loan, overdue_principal, months_overdue: int) -\u003e Decimal",
+          "after_start_line": 12,
+          "dependents_count": 14
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "penal_rate_annualised",
+          "new_signature": "def penal_rate_annualised(loan: Loan) -\u003e Decimal",
+          "after_start_line": 27,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "foreclosure_charge",
+          "new_signature": "def foreclosure_charge(loan: Loan, outstanding) -\u003e Decimal",
+          "after_start_line": 32,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "all_charges",
+          "new_signature": "def all_charges(loan: Loan) -\u003e dict",
+          "after_start_line": 39,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/pricing/interest.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "flat_to_reducing",
+          "new_signature": "def flat_to_reducing(flat_rate_pct, tenure_months: int) -\u003e Decimal",
+          "after_start_line": 9,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "effective_rate",
+          "new_signature": "def effective_rate(loan: Loan) -\u003e Decimal",
+          "after_start_line": 15,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "effective_apr",
+          "new_signature": "def effective_apr(loan: Loan) -\u003e Decimal",
+          "after_start_line": 21,
+          "dependents_count": 4
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/pricing/schedule.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "emi",
+          "new_signature": "def emi(loan: Loan) -\u003e Decimal",
+          "after_start_line": 10,
+          "dependents_count": 6
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "build_schedule",
+          "new_signature": "def build_schedule(loan: Loan) -\u003e list",
+          "after_start_line": 20,
+          "dependents_count": 3
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "overdue_projection",
+          "new_signature": "def overdue_projection(loan: Loan, months_overdue: int) -\u003e Decimal",
+          "after_start_line": 40,
+          "dependents_count": 6
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/recovery/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "fixtures/lending-platform/recovery/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/recovery/dunning.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "compute_overdue",
+          "new_signature": "def compute_overdue(loan: Loan, months_overdue: int) -\u003e dict",
+          "after_start_line": 8,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "_format_sms_text",
+          "new_signature": "def _format_sms_text(name: str, amount) -\u003e str",
+          "after_start_line": 19,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "build_reminder",
+          "new_signature": "def build_reminder(loan: Loan, borrower_name: str, months_overdue: int) -\u003e str",
+          "after_start_line": 24,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/reporting/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "fixtures/lending-platform/reporting/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/reporting/bureau.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "bureau_record",
+          "new_signature": "def bureau_record(loan: Loan, months_overdue: int) -\u003e dict",
+          "after_start_line": 6,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/reporting/rbi_return.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "portfolio_row",
+          "new_signature": "def portfolio_row(loan: Loan, months_overdue: int) -\u003e dict",
+          "after_start_line": 8,
+          "dependents_count": 2
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "build_return",
+          "new_signature": "def build_return(loans: list) -\u003e dict",
+          "after_start_line": 18,
+          "dependents_count": 2
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/tests/__init__.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "fixtures/lending-platform/tests/__init__.py",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/tests/test_dunning.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_overdue_total_includes_penal_charges",
+          "new_signature": "def test_overdue_total_includes_penal_charges()",
+          "after_start_line": 5,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_reminder_mentions_the_borrower",
+          "new_signature": "def test_reminder_mentions_the_borrower()",
+          "after_start_line": 10,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_sms_text_formats_amount",
+          "new_signature": "def test_sms_text_formats_amount()",
+          "after_start_line": 14,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/tests/test_fees.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "sample_loan",
+          "new_signature": "def sample_loan(**kw) -\u003e Loan",
+          "after_start_line": 9,
+          "dependents_count": 19
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_processing_fee_is_two_percent",
+          "new_signature": "def test_processing_fee_is_two_percent()",
+          "after_start_line": 20,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_penal_rate_annualises_to_thirty_six",
+          "new_signature": "def test_penal_rate_annualises_to_thirty_six()",
+          "after_start_line": 24,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_penal_charge_compounds_across_months",
+          "new_signature": "def test_penal_charge_compounds_across_months()",
+          "after_start_line": 28,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_no_foreclosure_charge_on_floating_rate",
+          "new_signature": "def test_no_foreclosure_charge_on_floating_rate()",
+          "after_start_line": 35,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_all_charges_lists_every_chargeable_item",
+          "new_signature": "def test_all_charges_lists_every_chargeable_item()",
+          "after_start_line": 39,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/tests/test_interest.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_twelve_percent_flat_is_about_twentytwo_reducing",
+          "new_signature": "def test_twelve_percent_flat_is_about_twentytwo_reducing()",
+          "after_start_line": 7,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_effective_rate_passes_through_for_reducing_loans",
+          "new_signature": "def test_effective_rate_passes_through_for_reducing_loans()",
+          "after_start_line": 11,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_apr_exceeds_nominal_rate_because_of_fees",
+          "new_signature": "def test_apr_exceeds_nominal_rate_because_of_fees()",
+          "after_start_line": 15,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/tests/test_kfs.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_kfs_discloses_all_inclusive_apr",
+          "new_signature": "def test_kfs_discloses_all_inclusive_apr()",
+          "after_start_line": 8,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_kfs_carries_amortisation_schedule",
+          "new_signature": "def test_kfs_carries_amortisation_schedule()",
+          "after_start_line": 13,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_kfs_states_penal_rate_annually",
+          "new_signature": "def test_kfs_states_penal_rate_annually()",
+          "after_start_line": 17,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_digital_loans_get_cooling_off_window",
+          "new_signature": "def test_digital_loans_get_cooling_off_window()",
+          "after_start_line": 21,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_sanction_letter_charges_match_kfs",
+          "new_signature": "def test_sanction_letter_charges_match_kfs()",
+          "after_start_line": 25,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_kfs_text_names_the_amount_the_borrower_receives",
+          "new_signature": "def test_kfs_text_names_the_amount_the_borrower_receives()",
+          "after_start_line": 29,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_kfs_discloses_a_penal_charge_illustration",
+          "new_signature": "def test_kfs_discloses_a_penal_charge_illustration()",
+          "after_start_line": 33,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "fixtures/lending-platform/tests/test_schedule.py",
+      "status": "A",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_schedule_has_one_row_per_month",
+          "new_signature": "def test_schedule_has_one_row_per_month()",
+          "after_start_line": 7,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_schedule_amortises_to_zero",
+          "new_signature": "def test_schedule_amortises_to_zero()",
+          "after_start_line": 11,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "function",
+          "name": "test_overdue_projection_exceeds_plain_instalments",
+          "new_signature": "def test_overdue_projection_exceeds_plain_instalments()",
+          "after_start_line": 15,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "requirements.txt",
+      "status": "A",
+      "language": "Pip Requirements",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "document",
+          "name": "requirements",
+          "new_signature": "pip requirements document requirements",
+          "after_start_line": 1,
+          "dependents_count": 14
+        }
+      ]
+    },
+    {
+      "path": "scripts/capture-graph-evidence.sh",
+      "status": "A",
+      "language": "Bash",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "scripts/capture-graph-evidence.sh",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "setup.sh",
+      "status": "A",
+      "language": "Bash",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "setup.sh",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    }
+  ],
+  "warnings": [
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": ".graphignore",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "base and head versions have no supported parser"
+    },
+    {
+      "code": "E_PARSE_ERROR",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/clojure/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file may be undercounted because it failed to parse cleanly",
+      "detail": "tree-sitter syntax error nodes present: error ERROR at line 24605 column 95 near \".\"; error ERROR at line 24606 column 95 near \".\"; error ERROR at line 24607 column 95 near \".\"; error ERROR at line 24608 column 95 near \".\"; error ERROR at line 24609 column 96 near \".\""
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/csharp/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 29629301 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/dart/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 4758698 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_PARSE_ERROR",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/erlang/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file may be undercounted because it failed to parse cleanly",
+      "detail": "tree-sitter syntax error nodes present: error ERROR at line 4996 column 7 near \"if (('0' \u003c= lookahead \u0026\u0026 lookahead \u003c= '9'))\"; missing identifier at line 5030 column 17 near \"'~', 15,\"; missing identifier at line 5063 column 18 near \"'}', 343,\"; missing identifier at line 5086 column 17 near \"'~', 15,\"; missing identifier at line 5172 column 18 near \"'|', 260,\""
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/fsharp/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 31990757 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/haskell/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 19811235 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/julia/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 54714183 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/objc/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 28242603 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/perl/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 20080466 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_PARSE_ERROR",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/r/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file may be undercounted because it failed to parse cleanly",
+      "detail": "tree-sitter syntax error nodes present: missing identifier at line 3675 column 17 near \"'~', 31,\"; missing identifier at line 3706 column 17 near \"'~', 31,\"; missing identifier at line 3734 column 17 near \"'~', 31,\"; missing identifier at line 4217 column 17 near \"'w', 11,\"; error ERROR at line 149065 column 17 near \"TSLanguage\""
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/grammars/zig/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 5843608 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/pgsql/src/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 14524353 bytes, above max parser input 4194304 bytes"
+    },
+    {
+      "code": "E_FILE_TOO_LARGE",
+      "severity": "warning",
+      "file_path": "internal/sem/zsh/parser.c",
+      "effect_on_semantic_completeness": "dependent references in this file were not counted because it exceeds max parser input",
+      "detail": "file is 9737608 bytes, above max parser input 4194304 bytes"
+    }
+  ]
+}

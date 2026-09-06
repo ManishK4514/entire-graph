@@ -1,0 +1,87 @@
+
+  BLAST RADIUS: CRITICAL    score 100/100
+
+changed
+  pricing.fees.penal_charge
+
+compliance findings
+  !! reaches regulated surface: kfs-generator
+     disclosure.kfs.penal_illustration is 2 hop(s) downstream of the change and carries a regulatory obligation. Key Fact Statement. Mandatory for retail and MSME loans from 1 October 2024. Must carry the all-inclusive APR, every fee, the amortisation schedule, penal charge details, the grievance contact and the cooling-off period. A charge not disclosed in the KFS cannot be levied without fresh borrower consent.
+     cite: RBI circular on Key Facts Statement for Loans & Advances, April 2024
+     proof: fixtures/lending-platform/disclosure/kfs.py:23
+   ! reaches regulated surface: bureau-reporting
+     reporting.bureau.bureau_record is 2 hop(s) downstream of the change and carries a regulatory obligation. Credit information reported to bureaus must be accurate; an overstated overdue amount damages a borrower's score and is a reportable grievance.
+     cite: Credit Information Companies (Regulation) Act; RBI CIC directions
+     proof: fixtures/lending-platform/reporting/bureau.py:6
+     UNVERIFIED — Confirm the accuracy/rectification obligation wording.
+   ! reaches regulated surface: regulatory-return
+     reporting.rbi_return.portfolio_row is 2 hop(s) downstream of the change and carries a regulatory obligation. Figures filed in the supervisory return must reconcile with what was disclosed to the borrower and charged in the ledger.
+     cite: RBI supervisory returns framework
+     proof: fixtures/lending-platform/reporting/rbi_return.py:8
+     UNVERIFIED — Confirm the exact return and reconciliation obligation for the entity type before citing this in the demo.
+  !! reaches regulated surface: sanction-disclosure
+     disclosure.sanction_letter.generate_sanction_letter is 4 hop(s) downstream of the change and carries a regulatory obligation. Charges in the sanction letter must match the KFS. Divergence between the two is the classic undisclosed-charge failure.
+     cite: RBI Fair Practices Code; KFS circular, April 2024
+     proof: fixtures/lending-platform/disclosure/sanction_letter.py:6
+
+scheduled consumers (ship unattended)
+  nightly_bureau_push  30 1 * * *
+  monthly_rbi_return  0 3 1 * *
+  daily_kfs_batch  0 2 * * *
+
+why this score
+  +  40  regulated-surface-critical
+         reaches 2 critical regulated surface(s)
+  +  20  regulated-surface-high
+         reaches 2 high-severity regulated surface(s)
+  +  36  scheduled-consumers
+         3 scheduled job(s) ship this change unattended
+  +   6  direct-callers
+         2 direct caller(s)
+  +  12  transitive-callers
+         12 transitive caller(s)
+   -10  surfaces-covered
+         every reached regulated surface has test coverage
+
+blast radius: 24 symbols
+  hop 1  pricing.schedule.overdue_projection
+           fixtures/lending-platform/pricing/schedule.py:40
+  hop 1  recovery.dunning.compute_overdue
+           fixtures/lending-platform/recovery/dunning.py:8
+  hop 1  tests.test_fees.test_penal_charge_compounds_across_months
+           fixtures/lending-platform/tests/test_fees.py:28
+  hop 2  disclosure.kfs.penal_illustration
+           fixtures/lending-platform/disclosure/kfs.py:23
+  hop 2  recovery.dunning.build_reminder
+           fixtures/lending-platform/recovery/dunning.py:24
+  hop 2  reporting.bureau.bureau_record
+           fixtures/lending-platform/reporting/bureau.py:6
+  hop 2  reporting.rbi_return.portfolio_row
+           fixtures/lending-platform/reporting/rbi_return.py:8
+  hop 2  tests.test_dunning.test_overdue_total_includes_penal_charges
+           fixtures/lending-platform/tests/test_dunning.py:5
+  hop 2  tests.test_schedule.test_overdue_projection_exceeds_plain_instalments
+           fixtures/lending-platform/tests/test_schedule.py:15
+  hop 3  disclosure.kfs.generate_kfs
+           fixtures/lending-platform/disclosure/kfs.py:33
+  hop 3  jobs.nightly_bureau_push.run
+           fixtures/lending-platform/jobs/nightly_bureau_push.py:8
+  hop 3  reporting.rbi_return.build_return
+           fixtures/lending-platform/reporting/rbi_return.py:18
+  ... 12 more (--json for all)
+
+run these tests
+  pytest tests/test_dunning.py::test_overdue_total_includes_penal_charges tests/test_dunning.py::test_reminder_mentions_the_borrower tests/test_fees.py::test_penal_charge_compounds_across_months tests/test_kfs.py::test_kfs_carries_amortisation_schedule tests/test_kfs.py::test_kfs_discloses_a_penal_charge_illustration tests/test_kfs.py::test_kfs_discloses_all_inclusive_apr tests/test_kfs.py::test_kfs_states_penal_rate_annually tests/test_kfs.py::test_kfs_text_names_the_amount_the_borrower_receives tests/test_kfs.py::test_sanction_letter_charges_match_kfs tests/test_schedule.py::test_overdue_projection_exceeds_plain_instalments
+
+evidence
+  sources:  entire-graph, local-ast
+  provider: entire-graph v0.4.0 (schema 1.1) @ 8d4856127106
+  command:  entire graph edges --repo /Users/manishk4514/Documents/Personal/Hackathon test/entire-graph --profile full --worktree --relation CALLS
+  parsed:   681/681 files
+  scope:    no parse failures; Python is analysed semantic
+  all 24 reached symbol(s) independently derived by both sources
+
+intent check
+  stated:  refactor penal charge rounding only, no downstream change
+  ACTUAL:  change reaches 4 regulated surface(s) and 3 scheduled job(s) beyond that scope
+

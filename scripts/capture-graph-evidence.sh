@@ -24,7 +24,9 @@ fi
 echo "provider: ${G[*]}  ($("${G[@]}" version 2>/dev/null))"
 
 SR=fixtures/lending-platform
-BASE="${1:-HEAD~1}"
+# The "submitted implementation" is everything this project added on top of the
+# upstream fork point, so that is what the final semantic diff must analyse.
+BASE="${1:-upstream-base}"
 
 echo "== 00 capabilities =="
 "${G[@]}" capabilities --json > "$OUT/00-capabilities.json"
@@ -65,6 +67,10 @@ echo "== 05 DATA_FLOWS, the orientation finding =="
 echo "== 06 final semantic diff of the submitted implementation =="
 "${G[@]}" diff --repo . --base "$BASE" --head HEAD --json \
   > "$OUT/06-final-semantic-diff.json" 2>&1
+
+echo "== 06b semantic diff of the demo change itself =="
+"${G[@]}" diff --repo . --base demo-before --head demo-after --json \
+  > "$OUT/06b-semantic-diff-demo-change.json" 2>&1
 
 echo "== 07 the decision the evidence produced =="
 ./.venv/bin/python -m blastradius.cli impact --symbol pricing.fees.penal_charge \

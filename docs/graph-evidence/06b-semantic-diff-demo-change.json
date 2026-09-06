@@ -1,0 +1,21 @@
+{
+  "base": "demo-before",
+  "head": "demo-after",
+  "files": [
+    {
+      "path": "fixtures/lending-platform/pricing/fees.py",
+      "status": "M",
+      "language": "Python",
+      "changes": [
+        {
+          "type": "body_changed",
+          "kind": "function",
+          "name": "penal_charge",
+          "before_start_line": 12,
+          "after_start_line": 12,
+          "dependents_count": 14
+        }
+      ]
+    }
+  ]
+}
