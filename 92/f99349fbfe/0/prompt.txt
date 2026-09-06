@@ -1,0 +1,70 @@
+Paste this as the first message:
+/private/tmp/claude-501/-Users-manishk4514-Documents-Personal-Hackathon-Track-2/322ec941-f03e-4c7b-95e6-ae2c46922a2b/scratchpad/FRESH-SESSION-BRIEF.md
+
+Then have it make a real edit and commit — a checkpoint records saved changes, so a session that only reads produces nothing. Good candidate: fill in BUILDATHON.md's "Checkpoint links" table. Then entire checkpoint list should show ≥1.
+
+Timeline
+
+┌─────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│    Time     │                                                          Do                                                           │
+├─────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 11:24–11:35 │ Start session in the clone. Paste brief. Make one edit + commit. Verify entire checkpoint list is non-zero.           │
+├─────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 11:35–11:40 │ Push: git push origin main demo/penal-charge-fix --follow-tags. Dry-run already passed. Record the SHA.               │
+├─────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 11:40–11:45 │ Record the fallback screen recording — the guide requires it and it's the thing people skip. Script below.            │
+├─────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 11:45       │ Freeze. Pre-noon checkpoint (body pre-written at docs/checkpoints/02-pre-curveball-stable.md).                        │
+├─────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 11:45–12:00 │ Demo dry-run. Read core/risk.py and _orient() until you can narrate both.                                             │
+├─────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ 12:00       │ Close the session. Read the card. Write "the smallest complete response is…" before touching anything. Fresh session. │
+└─────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Recording script (90 seconds)
+
+make demo-green    # LOW 3/100      — renaming a private SMS helper
+make demo-amber    # HIGH 52/100    — the money shot, see below
+make demo-red      # CRITICAL 100   — 4 surfaces, 3 unattended jobs
+make demo-diff     # same, from a real commit's semantic diff
+make gate          # BLOCKED (exit 1)
+
+Amber is the argument: structural terms alone total 22 — a generic impact tool calls it moderate. The RBI overlay takes it to 52, because annualise_monthly is what turns "3%/month" into the annual figure a borrower must legally be shown.
+
+One thing worth putting in your pocket for judging
+
+The required final semantic diff caught a real regression in our own submission: entire eings.json and silently dropped upstream's "deny": ["Read(./.entire/metadata/**)"] guard.Neither of us wrote it or noticed. entire graph diff --base upstream-base --head HEAD surfaced it as removed section permissions, and it's restored in c099c6e.
+
+That's the product's own thesis landing on itself — a change nobody intended, invisible in review, caught by graph evidence.
+
+State right now
+
+dc5b070 · working tree clean · 52 tests pass · three bands reproduce on official entire graph v0.4.0 · 681/681 files parsed, no failures · 0 unverified edges · 9 evidence artefacts including a 255-entity
+final semantic diff.
+
+I have not pushed — say go and I'll do it, or run it yourself in the new session so the pcheckpointed session (slightly better for the checkpoint story).
+
+---
+
+go
+
+---
+
+okay now what should i do it's 11:40
+
+---
+
+i don't get it can you tell me actionable steps for me in simple terms
+
+---
+
+i screen recorded but explain me these in brief what we did?
+
+---
+
+<task-notification>
+<task-id>wq0xvr9i5</task-id>
+<tool-use-id>toolu_019zS5nStLovgBWCYAYB4zeA</tool-use-id>
+<status>stopped</status>
+<summary>No completion record was found for background workflow "checkpoint-links-section" from the previous session. It may have been stopped (via the UI or TaskStop — these leave no transcript marker), or it may have been running when the previous Claude Code process exited. To pick up where it left off, relaunch with Workflow({scriptPath, resumeFromRunId: "wf_6caa26ff-ea4"}) — completed agent() calls return cached.</summary>
+</task-notification>
