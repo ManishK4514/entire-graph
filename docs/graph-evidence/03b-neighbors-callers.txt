@@ -1,0 +1,28 @@
+Index: cache-miss (28444ms) | Query: 2ms | Total: 28447ms
+Focus: penal_charge (fixtures/lending-platform/pricing/fees.py:12) def=12 span=12-24
+Callers:
+- overdue_projection (fixtures/lending-platform/pricing/schedule.py:44, def :40) [import_resolved]
+  fixtures/lending-platform/pricing/schedule.py:42-45
+    42 | instalment = emi(loan)
+    43 | return to_money(
+    44 |     instalment * months_overdue + penal_charge(loan, instalment, months_overdue)
+    45 | )
+- compute_overdue (fixtures/lending-platform/recovery/dunning.py:10, def :8) [import_resolved]
+  fixtures/lending-platform/recovery/dunning.py:8-16
+    8 | def compute_overdue(loan: Loan, months_overdue: int) -> dict:
+    9 |     instalment = emi(loan)
+    10 |     penalty = penal_charge(loan, instalment, months_overdue)
+    11 |     return {
+    12 |         "loan_id": loan.loan_id,
+    13 |         "instalments_due": to_money(instalment * months_overdue),
+    14 |         "penal_charges": penalty,
+    15 |         "total_due": to_money(instalment * months_overdue + penalty),
+    16 |     }
+- test_penal_charge_compounds_across_months (fixtures/lending-platform/tests/test_fees.py:30, def :28) [+1 more call site, name_only]
+  fixtures/lending-platform/tests/test_fees.py:28-32
+    28 | def test_penal_charge_compounds_across_months():
+    29 |     loan = sample_loan()
+    30 |     one = penal_charge(loan, Decimal("10000"), 1)
+    31 |     two = penal_charge(loan, Decimal("10000"), 2)
+    32 |     assert two > one * 2
+Callees: not queried (--direction in); rerun with --direction both to include them

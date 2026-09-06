@@ -1,0 +1,29 @@
+Index: cache-miss (35746ms) | Query: 7ms | Total: 35753ms
+Impact: penal_charge (fixtures/lending-platform/pricing/fees.py:12) def=12 span=12-24 [function]
+Blast radius: 9 callers (3 direct, 6 transitive), 3 callees, 2 type consumers, 4 data flows, 0 co-change files, 0 siblings.
+Callers (3 direct, 6 transitive; who breaks if behavior changes):
+- overdue_projection (fixtures/lending-platform/pricing/schedule.py:44, def :40)
+- compute_overdue (fixtures/lending-platform/recovery/dunning.py:10, def :8)
+- test_penal_charge_compounds_across_months (fixtures/lending-platform/tests/test_fees.py:30, def :28) [+1 more call site]
+- penal_illustration (fixtures/lending-platform/disclosure/kfs.py:28, def :23) [via overdue_projection]
+- build_reminder (fixtures/lending-platform/recovery/dunning.py:25, def :24) [via compute_overdue]
+- bureau_record (fixtures/lending-platform/reporting/bureau.py:7, def :6) [via compute_overdue]
+- portfolio_row (fixtures/lending-platform/reporting/rbi_return.py:9, def :8) [via compute_overdue]
+- test_overdue_total_includes_penal_charges (fixtures/lending-platform/tests/test_dunning.py:6, def :5) [via compute_overdue]
+- test_overdue_projection_exceeds_plain_instalments (fixtures/lending-platform/tests/test_schedule.py:17, def :15) [via overdue_projection]
+Callees (3; what it depends on):
+- decimal.Decimal
+- to_money (fixtures/lending-platform/core/money.py:7)
+- pct (fixtures/lending-platform/core/money.py:12)
+Type consumers (0 in, 2 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- -> Loan (fixtures/lending-platform/core/loan.py:9) [PARAM_TYPE]
+- -> Loan (fixtures/lending-platform/core/loan.py:9) [USES_TYPE]
+Data flows (3 in, 1 out):
+- <- to_money (fixtures/lending-platform/core/money.py:7)
+- -> pct (fixtures/lending-platform/core/money.py:12)
+- <- overdue_projection (fixtures/lending-platform/pricing/schedule.py:40)
+- <- compute_overdue (fixtures/lending-platform/recovery/dunning.py:8)
+Co-change coupling (0; files that historically change with fixtures/lending-platform/pricing/fees.py):
+- none
+Same-container siblings (0):
+- none

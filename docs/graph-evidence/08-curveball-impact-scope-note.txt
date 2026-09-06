@@ -1,0 +1,16 @@
+Index: cache-miss (26684ms) | Query: 6ms | Total: 26690ms
+Impact: GraphRun.scope_note (blastradius/adapters/entire_graph.py:246) def=246 span=246-257 [method in GraphRun]
+Blast radius: 0 callers (0 direct, 0 transitive), 1 callee, 0 type consumers, 1 data flow, 0 co-change files, 2 siblings.
+Callers (0 direct, 0 transitive; who breaks if behavior changes):
+- none
+Callees (1; what it depends on):
+- GraphRun.failures_in (blastradius/adapters/entire_graph.py:228)
+Type consumers (0 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- none
+Data flows (0 in, 1 out):
+- -> GraphRun.failures_in (blastradius/adapters/entire_graph.py:228)
+Co-change coupling (0; files that historically change with blastradius/adapters/entire_graph.py):
+- none
+Same-container siblings (2):
+- GraphRun.cite (blastradius/adapters/entire_graph.py:225)
+- GraphRun.failures_in (blastradius/adapters/entire_graph.py:228)

@@ -1,0 +1,69 @@
+
+  BLAST RADIUS: LOW    score 15/100  PARTIAL ANALYSIS — score is a FLOOR
+
+changed
+  pricing.fees.late_payment_charge
+
+analysis blind spots (static analysis could not resolve these)
+  ?? dynamic-dispatch  in disclosure.kfs.render_kfs_document
+     call target is selected from a subscript at runtime; the callee is whatever the table holds, which static analysis cannot enumerate
+     at: disclosure/kfs.py:25
+     VERIFY: open disclosure/kfs.py:25, enumerate the dispatch table, and re-run `blast impact --symbol <target>` for each entry it can hold
+  ?? missing-module  in reporting.rbi_return.<module>
+     `generated.cadence` is imported from a first-party package but no such module exists in the analysed subtree -- generated, or excluded from analysis
+     at: reporting/rbi_return.py:7
+     VERIFY: confirm whether generated.cadence is generated at build time; if so, generate it and re-run, because nothing downstream of it is in this radius
+  ?? reflection  in jobs.daily_kfs_batch.run_batch
+     `importlib.import_module` resolves its target at runtime from a value, not a name
+     at: jobs/daily_kfs_batch.py:14
+     VERIFY: open jobs/daily_kfs_batch.py:14; confirm the reachable targets by reading the source or by running the test that covers this path
+  ?? reflection  in jobs.daily_kfs_batch.run_batch
+     `getattr` resolves its target at runtime from a value, not a name
+     at: jobs/daily_kfs_batch.py:15
+     VERIFY: open jobs/daily_kfs_batch.py:15; confirm the reachable targets by reading the source or by running the test that covers this path
+  ?? dynamic-dispatch  in jobs.daily_kfs_batch.run_batch
+     `render` is a callable held in a local name or parameter; its target is whatever was assigned to it at runtime
+     at: jobs/daily_kfs_batch.py:16
+     VERIFY: open jobs/daily_kfs_batch.py:16 and determine what `render` can be bound to; re-run `blast impact --symbol <target>` for each possibility
+
+why this score
+  +  15  untested-change
+         1 changed symbol(s) have no direct test
+  +   0  analysis-incomplete
+         5 unresolved site(s) in scope (dynamic-dispatch, missing-module, reflection) — every term above counts something FOUND, so this score is a FLOOR
+
+blast radius: 0 symbols
+
+run these tests
+  pytest
+
+verification path (what would settle what we cannot assert)
+  - dynamic-dispatch at disclosure/kfs.py:25
+    -> open disclosure/kfs.py:25, enumerate the dispatch table, and re-run `blast impact --symbol <target>` for each entry it can hold
+  - missing-module at reporting/rbi_return.py:7
+    -> confirm whether generated.cadence is generated at build time; if so, generate it and re-run, because nothing downstream of it is in this radius
+  - reflection at jobs/daily_kfs_batch.py:14
+    -> open jobs/daily_kfs_batch.py:14; confirm the reachable targets by reading the source or by running the test that covers this path
+  - reflection at jobs/daily_kfs_batch.py:15
+    -> open jobs/daily_kfs_batch.py:15; confirm the reachable targets by reading the source or by running the test that covers this path
+  - dynamic-dispatch at jobs/daily_kfs_batch.py:16
+    -> open jobs/daily_kfs_batch.py:16 and determine what `render` can be bound to; re-run `blast impact --symbol <target>` for each possibility
+  - the blast radius is a lower bound while blind spots remain
+    -> run the selected tests -- pytest -- and treat a pass as evidence about the resolved paths only
+
+evidence
+  sources:  none
+  confirmed:            0  corroborated by two sources and structurally resolved
+  heuristic:            0  single-sourced, or inferred by its source (name/type match)
+  needs verification:   5  must be settled against source or a test
+  provider: entire-graph v0.4.0 (schema 1.1) @ a4f7f1105740
+  command:  entire graph edges --repo /Users/manishk4514/Documents/Personal/Hackathon test/entire-graph --profile full --worktree --relation CALLS
+  parsed:   699/699 files
+  scope:    no parse failures; Python is analysed semantic
+            (parse completeness — NOT relation completeness; see blind spots above)
+  ! 5 unresolved call site(s) in scope. Symbols reachable only through them are NOT in this radius: it is a lower bound, not a complete set.
+
+intent check
+  stated:  adjust penal charge rounding; nothing downstream
+  UNKNOWN: containment CANNOT be confirmed: 5 unresolved call site(s) mean a reachable surface may be missing from this radius
+

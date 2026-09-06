@@ -1,0 +1,65 @@
+LOW CONFIDENCE: top score 24.8 and ranks 1 and 2 are tied (0.0000 apart) - the ranking did not choose. This repo may not contain what you asked for; verify before editing.
+1. Makefile:25-29 score=24.7572 focus=27 signals=body,symbol-usage
+
+demo-red:
+	$(PY) -m blastradius.cli impact --symbol pricing.fees.penal_charge \
+	  --intent "refactor penal charge rounding only, no downstream change"
+
+
+2. blastradius/cli.py:1-5 score=24.7572 focus=3 signals=body,symbol-usage
+"""blast — impact-aware change review for regulated lending code.
+
+    blast impact --symbol pricing.fees.penal_charge
+    blast impact --base HEAD~1                 # changed symbols from a real diff
+    blast impact --base HEAD~1 --fail-on-critical --json   # merge gate
+
+3. blastradius/cli.py:205-239 score=24.7572 symbol=main kind=function focus=215 signals=body,symbol-usage,complete-symbol
+def main(argv=None) -> int:
+    parser = argparse.ArgumentParser(prog="blast", description=__doc__,
+                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    p = sub.add_parser("impact", help="analyse the blast radius of a change")
+    p.add_argument("--repo", default=".", help="git repository root (default: .)")
+    p.add_argument("--source-root", default=DEFAULT_SOURCE_ROOT,
+                   help=f"subtree to analyse (default: {DEFAULT_SOURCE_ROOT})")
+    p.add_argument("--symbol", action="append",
+                   help="changed symbol, e.g. pricing.fees.penal_charge (repeatable)")
+    p.add_argument("--base", help="derive changed symbols from a semantic diff against this ref")
+    p.add_argument("--head", default="HEAD", help="head ref for --base (default: HEAD)")
+    p.add_argument("--rules", default=None, help="path to the rules file")
+    p.add_argument("--max-hops", type=int, default=8)
+    p.add_argument("--graph-bin", default=None, help="explicit Entire Graph provider binary")
+    p.add_argument("--json", action="store_true", help="machine-readable report")
+    p.add_argument("--include-data-flows", action="store_true",
+                   help="also walk DATA_FLOWS edges (orientation-normalised; widens the radius)")
+    p.add_argument("--offline", action="store_true",
+                   help="skip Entire Graph; findings become single-sourced")
+    p.add_argument("--intent", default=None,
+                   help="stated intent to check the actual blast radius against")
+    p.add_argument("--fail-on-critical", action="store_true",
+                   help="exit non-zero on HIGH or CRITICAL (for CI); also exits 2 when "
+                        "the analysis is partial, unless --allow-partial")
+    p.add_argument("--allow-partial", action="store_true",
+                   help="let the gate pass on an incomplete analysis (accepts the "
+                        "residual risk explicitly rather than silently)")
+    p.set_defaults(func=cmd_impact)
+
+    args = parser.parse_args(argv)
+    if args.command == "impact" and not args.symbol and not args.base:
+        parser.error("give --symbol or --base")
+    return args.func(args)
+
+4. fixtures/lending-platform/pricing/fees.py:12 penal_charge  [body: def penal_charge]
+5. fixtures/lending-platform/pricing/fees.py:27 penal_rate_annualised  [body: def penal_rate_annualised]
+COVERING TEST (what hit 1 is supposed to do; not a fix site):
+6. blastradius/tests/test_partial_analysis.py:460-461 symbol=test_the_gate_does_not_pass_an_analysis_that_could_not_see kind=function focus=461 signals=related:covering-test
+    assert main(argv) == 2
+    assert main(argv + ["--allow-partial"]) == 0
+
+  ALSO COVERING main (3 tests cover it; all must still pass): test_an_analysis_missing_an_entire_source_is_never_reported_complete, test_an_incomplete_analysis_never_confirms_a_stated_intent in blastradius/tests/test_partial_analysis.py
+VERIFY: go test ./blastradius/tests
+  targets blastradius/tests/test_partial_analysis.py (from go.mod module root) tier=narrow
+  run it ONCE after editing; if it fails, fix the code and re-run THIS command.
+  do not build an alternative test harness, hand-assemble a classpath, or re-verify by
+  reverting and reapplying the edit.

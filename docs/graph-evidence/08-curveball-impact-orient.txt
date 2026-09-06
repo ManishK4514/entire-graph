@@ -1,0 +1,24 @@
+Index: cache-miss (23899ms) | Query: 4ms | Total: 23903ms
+Impact: _orient (blastradius/adapters/entire_graph.py:91) def=91 span=91-100 [function]
+Blast radius: 10 callers (6 direct, 4 transitive), 0 callees, 0 type consumers, 0 data flows, 0 co-change files, 0 siblings.
+Callers (6 direct, 4 transitive; who breaks if behavior changes):
+- EntireGraphAdapter.edges (blastradius/adapters/entire_graph.py:400, def :372)
+- test_calls_are_already_in_dependency_order (blastradius/tests/test_entire_graph_adapter.py:86, def :85)
+- test_a_return_value_data_flow_is_inverted (blastradius/tests/test_entire_graph_adapter.py:92, def :89)
+- test_a_forwarded_parameter_data_flow_is_not_inverted (blastradius/tests/test_entire_graph_adapter.py:98, def :97)
+- test_an_unrecognised_data_flow_reason_keeps_the_stated_direction (blastradius/tests/test_entire_graph_adapter.py:105, def :103)
+- build_graph (blastradius/cli.py:59, def :27) [+1 more call site, via EntireGraphAdapter.edges]
+- test_the_provider_finds_the_real_callers_of_penal_charge (blastradius/tests/test_entire_graph_adapter.py:161, def :159) [+1 more call site, via EntireGraphAdapter.edges]
+- test_every_graph_edge_carries_a_clickable_citation (blastradius/tests/test_entire_graph_adapter.py:172, def :170) [via EntireGraphAdapter.edges]
+- test_our_traversal_agrees_with_the_providers_own_impact_command (blastradius/tests/test_entire_graph_adapter.py:183, def :179) [via EntireGraphAdapter.edges]
+- BUILDATHON.md (BUILDATHON.md) [doc-mention, name_only]
+Callees (0; what it depends on):
+- none
+Type consumers (0 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- none
+Data flows (0 in, 0 out):
+- none
+Co-change coupling (0; files that historically change with blastradius/adapters/entire_graph.py):
+- none
+Same-container siblings (0):
+- none

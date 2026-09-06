@@ -1,0 +1,122 @@
+# Codified RBI obligations mapped to code surfaces.
+#
+# This is the layer a generic impact tool does not have. Each rule marks a code
+# surface as regulated and names the obligation it carries, so a change that
+# reaches it is a COMPLIANCE FINDING, not a matter of taste.
+#
+# `confidence` and `verify` are load-bearing: anything not marked confidence:
+# high is rendered as "needs verification" in the report and is never asserted
+# as fact. Confirm each citation against the current RBI circular before the
+# demo.
+
+version: 1
+
+surfaces:
+  - id: kfs-generator
+    match:
+      modules: ["disclosure.kfs"]
+      symbols: ["generate_kfs", "render_kfs_text", "penal_illustration"]
+    obligation: >
+      Key Fact Statement. Mandatory for retail and MSME loans from 1 October
+      2024. Must carry the all-inclusive APR, every fee, the amortisation
+      schedule, penal charge details, the grievance contact and the cooling-off
+      period. A charge not disclosed in the KFS cannot be levied without fresh
+      borrower consent.
+    citation: "RBI circular on Key Facts Statement for Loans & Advances, April 2024"
+    severity: critical
+    confidence: high
+
+  - id: sanction-disclosure
+    match:
+      modules: ["disclosure.sanction_letter"]
+      symbols: ["generate_sanction_letter", "charges_match_kfs"]
+    obligation: >
+      Charges in the sanction letter must match the KFS. Divergence between the
+      two is the classic undisclosed-charge failure.
+    citation: "RBI Fair Practices Code; KFS circular, April 2024"
+    severity: critical
+    confidence: high
+
+  - id: penal-charges
+    match:
+      modules: ["pricing.fees"]
+      symbols: ["penal_charge", "penal_rate_annualised"]
+    obligation: >
+      Penal charges must be a reasonable, non-discriminatory CHARGE, not penal
+      INTEREST, and must not be capitalised or compounded. Compounding a penal
+      charge month on month is a rule violation, not merely expensive.
+    citation: "RBI circular on Fair Lending Practice - Penal Charges in Loan Accounts, August 2023 (effective for new loans 1 April 2024)"
+    severity: critical
+    confidence: high
+
+  - id: all-inclusive-apr
+    match:
+      modules: ["pricing.interest"]
+      symbols: ["effective_apr", "effective_rate", "flat_to_reducing"]
+    obligation: >
+      The APR disclosed must be all-inclusive: interest plus every fee and
+      charge, computed on the amount the borrower actually receives. No cost may
+      sit outside it.
+    citation: "RBI KFS circular, April 2024"
+    severity: critical
+    confidence: high
+
+  - id: regulatory-return
+    match:
+      modules: ["reporting.rbi_return"]
+      symbols: ["portfolio_row", "build_return"]
+    obligation: >
+      Figures filed in the supervisory return must reconcile with what was
+      disclosed to the borrower and charged in the ledger.
+    citation: "RBI supervisory returns framework"
+    severity: high
+    confidence: medium
+    verify: "Confirm the exact return and reconciliation obligation for the entity type before citing this in the demo."
+
+  - id: cooling-off
+    match:
+      modules: ["disclosure.kfs"]
+      symbols: ["cooling_off_days"]
+    obligation: >
+      Digital loans carry a cooling-off / look-up period in which the borrower
+      may exit by repaying principal plus proportionate charges, without penalty.
+    citation: "RBI Guidelines on Digital Lending, September 2022"
+    severity: high
+    confidence: high
+
+  - id: foreclosure-charges
+    match:
+      modules: ["pricing.fees"]
+      symbols: ["foreclosure_charge"]
+    obligation: >
+      Foreclosure and prepayment charges are barred on floating-rate loans to
+      individual borrowers. Levying one anyway is a violation.
+    citation: "RBI directions on foreclosure charges / pre-payment penalties on floating rate term loans"
+    severity: high
+    confidence: medium
+    verify: "The scope of this bar has been extended over time (individuals, then MSEs). Confirm the current applicable scope before asserting it on stage."
+
+  - id: bureau-reporting
+    match:
+      modules: ["reporting.bureau"]
+      symbols: ["bureau_record"]
+    obligation: >
+      Credit information reported to bureaus must be accurate; an overstated
+      overdue amount damages a borrower's score and is a reportable grievance.
+    citation: "Credit Information Companies (Regulation) Act; RBI CIC directions"
+    severity: high
+    confidence: medium
+    verify: "Confirm the accuracy/rectification obligation wording."
+
+# Scored jobs: reaching one of these means the change ships on a schedule,
+# unattended, to a downstream consumer.
+scheduled_consumers:
+  - module: "jobs.daily_kfs_batch"
+    name: "daily_kfs_batch"
+    schedule: "0 2 * * *"
+  - module: "jobs.monthly_rbi_return"
+    name: "monthly_rbi_return"
+    schedule: "0 3 1 * *"
+  - module: "jobs.nightly_bureau_push"
+    name: "nightly_bureau_push"
+    schedule: "30 1 * * *"

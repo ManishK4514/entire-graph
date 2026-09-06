@@ -1,0 +1,17 @@
+fixtures/lending-platform/pricing/fees.py:12  function penal_charge
+  signature: def penal_charge(loan: Loan, overdue_principal, months_overdue: int) -> Decimal
+
+fixtures/lending-platform/pricing/fees.py:12-24 penal_charge [function]
+  12→ def penal_charge(loan: Loan, overdue_principal, months_overdue: int) -> Decimal:
+  13→     """Penal charge on an overdue instalment.
+  14→ 
+  15→     NOTE: this compounds month on month. RBI's 2024 circular requires penal
+  16→     *charges* to be reasonable and bars penal *interest* that compounds.
+  17→     """
+  18→     charge = Decimal("0")
+  19→     base = Decimal(str(overdue_principal))
+  20→     for _ in range(months_overdue):
+  21→         month_charge = pct(base, loan.penal_rate_monthly_pct)
+  22→         charge += month_charge
+  23→         base += month_charge          # <-- compounding
+  24→     return to_money(charge)

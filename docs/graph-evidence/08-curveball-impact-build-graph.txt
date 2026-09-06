@@ -1,0 +1,25 @@
+Index: cache-miss (20544ms) | Query: 4ms | Total: 20549ms
+Impact: build_graph (blastradius/cli.py:27) def=27 span=27-82 [function]
+Blast radius: 1 caller (1 direct, 0 transitive), 10 callees, 0 type consumers, 2 data flows, 0 co-change files, 0 siblings.
+Callers (1 direct, 0 transitive; who breaks if behavior changes):
+- cmd_impact (blastradius/cli.py:134, def :128)
+Callees (10; what it depends on):
+- os.path.abspath
+- os.path.join
+- EntireGraphAdapter (blastradius/adapters/entire_graph.py:260) [CONSTRUCTS]
+- EntireGraphAdapter.edges (blastradius/adapters/entire_graph.py:372)
+- LocalAstResolver (blastradius/adapters/local_ast.py:40) [CONSTRUCTS]
+- LocalAstResolver.collect_definitions (blastradius/adapters/local_ast.py:64)
+- LocalAstResolver.edges (blastradius/adapters/local_ast.py:97)
+- _missing_provider_spot (blastradius/cli.py:85)
+- SymbolGraph (blastradius/core/graph_model.py:17) [CONSTRUCTS]
+- SymbolGraph.add (blastradius/core/graph_model.py:23)
+Type consumers (0 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- none
+Data flows (1 in, 1 out):
+- -> EntireGraphAdapter (blastradius/adapters/entire_graph.py:260)
+- <- SymbolGraph (blastradius/core/graph_model.py:17)
+Co-change coupling (0; files that historically change with blastradius/cli.py):
+- none
+Same-container siblings (0):
+- none

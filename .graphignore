@@ -7,3 +7,6 @@
 # symbols. Skipping them makes `entire graph index` report a clean, honest graph.
 parser.c
 scanner.c
+
+# Blast Radius: captured provider output is not source.
+docs/graph-evidence/
