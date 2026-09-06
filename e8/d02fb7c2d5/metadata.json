@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "e8d02fb7c2d5",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "BUILDATHON.md",
+    "docs/graph-evidence/08-curveball-impact-build-graph.txt",
+    "docs/graph-evidence/08-curveball-impact-verification.txt",
+    "docs/graph-evidence/09-curveball-degenerate-crosscheck.txt",
+    "docs/graph-evidence/10-curveball-partial-report.txt"
+  ],
+  "sessions": [
+    {
+      "metadata": "/e8/d02fb7c2d5/0/metadata.json",
+      "transcript": "/e8/d02fb7c2d5/0/full.jsonl",
+      "compact_transcript": "/e8/d02fb7c2d5/0/transcript.jsonl",
+      "content_hash": "/e8/d02fb7c2d5/0/content_hash.txt",
+      "prompt": "/e8/d02fb7c2d5/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 462,
+    "cache_creation_tokens": 563950,
+    "cache_read_tokens": 53209057,
+    "output_tokens": 253759,
+    "api_call_count": 232
+  }
+}
