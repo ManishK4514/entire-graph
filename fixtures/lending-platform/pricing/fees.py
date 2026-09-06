@@ -15,12 +15,11 @@ def penal_charge(loan: Loan, overdue_principal, months_overdue: int) -> Decimal:
     NOTE: this compounds month on month. RBI's 2024 circular requires penal
     *charges* to be reasonable and bars penal *interest* that compounds.
     """
-    charge = Decimal("0")
+    # RBI 2023 penal-charges circular: a penal CHARGE may not be capitalised.
+    # Charge each overdue month on the ORIGINAL overdue principal, never on a
+    # balance that already includes previous months' charges.
     base = Decimal(str(overdue_principal))
-    for _ in range(months_overdue):
-        month_charge = pct(base, loan.penal_rate_monthly_pct)
-        charge += month_charge
-        base += month_charge          # <-- compounding
+    charge = pct(base, loan.penal_rate_monthly_pct) * Decimal(months_overdue)
     return to_money(charge)
 
 
