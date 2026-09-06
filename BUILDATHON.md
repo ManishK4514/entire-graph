@@ -475,18 +475,45 @@ account and no network needed to read it. The ID column is filled only from
 | --- | --- | --- | --- |
 | 1 | `docs/checkpoints/01-initial-understanding.md` | `8d48561`, tagged `demo-before` | none — predates the session |
 | 2 | `docs/checkpoints/02-pre-curveball-stable.md` | `dc5b070`, on `origin/blast-radius` | none — predates the session |
-| 3 | `docs/checkpoints/03-curveball-response.md` | see below | see below |
-| 4 | `docs/checkpoints/04-final-implementation.md` | see below | see below |
+| 3 | `docs/checkpoints/03-curveball-response.md` | `5e6fc2e` | `0793a1cc9158` |
+| 4 | `docs/checkpoints/04-final-implementation.md` | `5e6fc2e` | `0793a1cc9158` |
 
-<!-- CHECKPOINT-ATTRIBUTION -->
+**Disclosed, because `entire checkpoint explain` will show it.** Milestones 3 and 4
+share one commit and therefore one checkpoint — that part is ordinary. Two things
+about it are not, and both are recorded rather than smoothed over.
+
+*Two sessions were open on this worktree during the curveball window.* A terminal
+session (`45caac4c-7075-4226-8754-7706d6430f9c`) reconstructed from Checkpoint 2, ran
+the pre-edit graph analysis, and wrote the implementation. A VS Code session
+(`1814950d-5021-4af0-a266-c747306d80e5`) concurrently edited `BUILDATHON.md`,
+tightened `Edge.tier()` to check the corroborator's own resolution, added tests, and
+renamed the dynamic fixture's symbols to end the name collision. Both sessions' work
+is in `5e6fc2e`; neither is hidden. Checkpoint `0793a1cc9158` records the terminal
+session's transcript — the one that did the curveball work in the scored order.
+
+*The checkpoint was attached, not hook-stamped.* Rewriting the last commits to drop a
+co-author trailer left the new tip without one, so it was created with
+`entire session attach` and the trailer carried on the following commit, exactly as
+that command instructs. The right fix would have been `entire session adopt` before
+the second session's first commit — the failure mode `AGENTS.md` warns about, met in
+person.
+
+*History was rewritten once.* Commits `09512de` and `35d67b6` carried a
+`Co-Authored-By` trailer that was removed at the author's request, so their SHAs are
+now `f8c1dae` and `3a82dbc`. Entire re-resolved checkpoints `92f99349fbfe` and
+`c318df27e970` to the new SHAs on its own — which is a fair demonstration that the
+records are not just text pasted into a commit message. `origin/blast-radius` still
+points at the pre-rewrite history and needs a force-push to match.
 
 **The first checkpoint this repository has ever recorded is `92f99349fbfe`**, minted by the
-commit that added this section (`09512de`). It is the worked example of the paragraph above:
+commit that added this section (`f8c1dae`, formerly `09512de` — see above). It is the worked example of the paragraph above:
 nothing here typed it, the hook stamped the trailer, and `entire checkpoint list` prints it
 whether or not this document mentions it.
 
 `origin/main` is still the upstream fork point `3a2a715`: the branch is protected and the
-push was refused, so the submission lives on `origin/blast-radius` (`dc5b070`) with the demo
+push was refused, so the submission lives on `origin/blast-radius` — which, after the
+history rewrite described above, needs `git push --force origin main:refs/heads/blast-radius`
+to match local `main` — with the demo
 change on `origin/demo/penal-charge-fix` (`aa8f3b6`, tagged `demo-after`). A judge who
 clones and stays on `main` sees none of this work. The three tags are lightweight, so
 `--follow-tags` does not carry them; they were pushed by explicit ref.
