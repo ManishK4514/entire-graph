@@ -245,14 +245,79 @@ product relies on `def` / `neighbors` / `edges` for the lookups that must be pre
 
 ## Checkpoint links and what each checkpoint proves
 
-> _URLs to be filled in as each checkpoint is created._
+> _"Link" is the wrong word for what Entire CLI 0.10.5 offers and this section does not
+> pretend otherwise: there is no `open`, `browse` or `url` verb, and `origin` is an
+> `entire://` transport a browser cannot resolve. A checkpoint reference here is a command
+> run against an ID. Milestones 3 and 4 are commitments, not findings — the Curveball card
+> arrives at 12:00._
 
-| # | Milestone | What it proves |
-| --- | --- | --- |
-| 1 | Initial understanding and intended architecture | the four invariants were chosen up front, not rationalised afterwards |
-| 2 | Last stable state before the Noon Curveball | a runnable product existed before the constraint arrived |
-| 3 | Response to the Noon Curveball | a fresh session reconstructed the project from checkpoint context and changed a real decision |
-| 4 | Final implementation and verification | what shipped, what was verified, and what remains unverified |
+**Why a checkpoint ID is evidence and not a self-report.** Entire's git hooks write it, not
+this document: a commit made while an agent session is bound to this worktree carries an
+`Entire-Checkpoint:` trailer, and `entire checkpoint explain <id>` resolves that ID to the
+session's prompts, token counts and touched files (flags per `entire checkpoint explain
+--help`; we report its documented surface, not its internals). Nothing edited into this file
+can back-write one, which is the only reason the IDs are worth citing.
+
+**Disclosed before a judge finds it: the first four submission commits carry no trailer.**
+The hooks were installed at 11:17 and those commits were made at 11:21, before this
+document's session existed, so none was stamped — command 3 below prints empty brackets for
+all four. Separately, `git log --all` in this fork carries **208** git-parsed
+`Entire-Checkpoint:` trailers (277 by raw line-grep, which also counts trailers quoted
+inside upstream merge messages). **Every one of them is inherited `entireio` history and
+none is ours.** They are genuine checkpoints — `entire graph checkpoint f08be4bb1d35 --json`
+resolves one from git alone, no account needed, which is a fair demonstration of the
+provider — but citing one as Blast Radius evidence would be a false claim.
+
+| # | Milestone | Status | What it proves |
+| --- | --- | --- | --- |
+| 1 | Initial understanding and intended architecture | written | the four invariants were chosen up front, not rationalised afterwards |
+| 2 | Last stable state before the Noon Curveball | written | a runnable product existed before the constraint arrived |
+| 3 | Response to the Noon Curveball | not yet | a fresh session reconstructed the project from checkpoint context and changed a real decision |
+| 4 | Final implementation and verification | not yet | what shipped, what was verified, and what remains unverified |
+
+**What backs each row.** The written body is an ordinary file in the repo — no CLI, no
+account and no network needed to read it. The ID column is filled only from
+`entire checkpoint list --json`; none is ever typed by hand.
+
+| # | Written body | Commit | Entire checkpoint ID |
+| --- | --- | --- | --- |
+| 1 | `docs/checkpoints/01-initial-understanding.md` | `8d48561`, tagged `demo-before` | none — predates the session |
+| 2 | `docs/checkpoints/02-pre-curveball-stable.md` | `dc5b070`, on `origin/blast-radius` | none — predates the session |
+| 3 | not written — the card arrives at 12:00 | pending | pending |
+| 4 | not written — depends on milestone 3 | pending | pending |
+
+`origin/main` is still the upstream fork point `3a2a715`: the branch is protected and the
+push was refused, so the submission lives on `origin/blast-radius` (`dc5b070`) with the demo
+change on `origin/demo/penal-charge-fix` (`aa8f3b6`, tagged `demo-after`). A judge who
+clones and stays on `main` sees none of this work. The three tags are lightweight, so
+`--follow-tags` does not carry them; they were pushed by explicit ref.
+
+### How to verify these yourself
+
+```bash
+# 1. live checkpoint count for the current branch — branch-scoped, so read the branch line
+entire checkpoint list
+entire checkpoint list --json
+
+# 2. resolve a record, by ID or via the commit carrying the trailer
+entire checkpoint explain <id>                    # exits 1 if the ID is unknown
+entire checkpoint explain --commit HEAD --short   # exits 0 even when no trailer is present
+
+# 3. our own disclosure: which submission commits carry a trailer
+git log 3a2a715..main 3a2a715..demo/penal-charge-fix \
+  --format='%h %s [%(trailers:key=Entire-Checkpoint,valueonly)]'
+
+# 4. entity-level diff for any checkpoint ID, from git alone — no account, works today
+entire graph checkpoint f08be4bb1d35 --json
+
+# 5. the milestone bodies, which need nothing installed at all
+ls docs/checkpoints/
+```
+
+Read the output of these rather than their exit status: `entire checkpoint explain --commit
+HEAD --short` exits `0` while printing `✗ No associated Entire checkpoint`. If command 1
+reports checkpoints that this section's ID column does not list, the column is stale and
+this section is the thing to distrust.
 
 ## Setup, run and test instructions
 
