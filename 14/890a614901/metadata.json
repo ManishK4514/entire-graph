@@ -1,0 +1,29 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "14890a614901",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "BUILDATHON.md",
+    "docs/checkpoints/04-final-implementation.md",
+    "docs/graph-evidence/11-curveball-dynamic-graph.txt",
+    "scripts/summarise-dynamic-edges.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/14/890a614901/0/metadata.json",
+      "transcript": "/14/890a614901/0/full.jsonl",
+      "compact_transcript": "/14/890a614901/0/transcript.jsonl",
+      "content_hash": "/14/890a614901/0/content_hash.txt",
+      "prompt": "/14/890a614901/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 46,
+    "cache_creation_tokens": 28752,
+    "cache_read_tokens": 7366667,
+    "output_tokens": 16624,
+    "api_call_count": 23
+  }
+}

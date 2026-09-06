@@ -1,0 +1,57 @@
+{
+  "cli_version": "0.10.5",
+  "checkpoint_id": "14890a614901",
+  "session_id": "45caac4c-7075-4226-8754-7706d6430f9c",
+  "strategy": "manual-commit",
+  "created_at": "2026-09-06T08:31:15.867771Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "BUILDATHON.md",
+    "docs/checkpoints/04-final-implementation.md",
+    "docs/graph-evidence/11-curveball-dynamic-graph.txt",
+    "scripts/summarise-dynamic-edges.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-5[1m]",
+  "turn_id": "8fa06d707811",
+  "checkpoint_transcript_start": 1459,
+  "transcript_lines_at_start": 1459,
+  "compact_transcript_start": 247,
+  "token_usage": {
+    "input_tokens": 46,
+    "cache_creation_tokens": 28752,
+    "cache_read_tokens": 7366667,
+    "output_tokens": 16624,
+    "api_call_count": 23
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-09-06T08:31:15.764748Z",
+    "agent_lines": 0,
+    "agent_removed": 4,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 9,
+    "total_committed": 4,
+    "total_lines_changed": 13,
+    "agent_percentage": 30.76923076923077,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 18,
+      "user_lines_removed": 9,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        "docs/graph-evidence/11-curveball-dynamic-graph.txt": 3,
+        "scripts/summarise-dynamic-edges.py": 15
+      },
+      "user_removed_per_file": {
+        "docs/graph-evidence/11-curveball-dynamic-graph.txt": 1,
+        "scripts/summarise-dynamic-edges.py": 8
+      }
+    }
+  ]
+}
