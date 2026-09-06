@@ -286,6 +286,11 @@ account and no network needed to read it. The ID column is filled only from
 | 3 | not written — the card arrives at 12:00 | pending | pending |
 | 4 | not written — depends on milestone 3 | pending | pending |
 
+**The first checkpoint this repository has ever recorded is `92f99349fbfe`**, minted by the
+commit that added this section (`09512de`). It is the worked example of the paragraph above:
+nothing here typed it, the hook stamped the trailer, and `entire checkpoint list` prints it
+whether or not this document mentions it.
+
 `origin/main` is still the upstream fork point `3a2a715`: the branch is protected and the
 push was refused, so the submission lives on `origin/blast-radius` (`dc5b070`) with the demo
 change on `origin/demo/penal-charge-fix` (`aa8f3b6`, tagged `demo-after`). A judge who
