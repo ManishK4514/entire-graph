@@ -1,1 +1,37 @@
-/private/tmp/claude-501/-Users-manishk4514-Documents-Personal-Hackathon-test-entire-graph/581b7e4d-1157-4301-8cd2-b0072007616e/scratchpad/CURVEBALL-BRIEF.md
+in last two commit it's added claude as co-work in commit remove that and keep mine only
+
+---
+
+now we have:
+
+
+ManishPocketly4514claude
+ManishPocketly4514
+and
+claude
+committed
+1 minute ago
+docs: record checkpoint 0fafda71bf23 and disclose its session attribution
+ManishPocketly4514claude
+ManishPocketly4514
+and
+claude
+committed
+5 minutes ago
+feat: completeness as an axis — a blast radius is a lower bound, not a set
+ManishPocketly4514claude
+ManishPocketly4514
+and
+claude
+committed
+7 minutes ago
+docs: record the first checkpoint this repository has produced
+ManishPocketly4514claude
+ManishPocketly4514
+and
+claude
+committed
+2 hours ago
+docs: fill in the checkpoint links section with verifiable references
+
+fix all of them remove claude from commit
