@@ -1,4 +1,4 @@
-Index: cache-miss (17430ms) | Query: 1ms | Total: 17432ms
+Index: cache-miss (28444ms) | Query: 2ms | Total: 28447ms
 Focus: penal_charge (fixtures/lending-platform/pricing/fees.py:12) def=12 span=12-24
 Callers:
 - overdue_projection (fixtures/lending-platform/pricing/schedule.py:44, def :40) [import_resolved]

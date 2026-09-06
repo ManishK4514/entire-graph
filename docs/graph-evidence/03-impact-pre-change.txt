@@ -1,4 +1,4 @@
-Index: cache-miss (17400ms) | Query: 7ms | Total: 17408ms
+Index: cache-miss (35746ms) | Query: 7ms | Total: 35753ms
 Impact: penal_charge (fixtures/lending-platform/pricing/fees.py:12) def=12 span=12-24 [function]
 Blast radius: 9 callers (3 direct, 6 transitive), 3 callees, 2 type consumers, 4 data flows, 0 co-change files, 0 siblings.
 Callers (3 direct, 6 transitive; who breaks if behavior changes):

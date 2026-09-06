@@ -16,6 +16,7 @@ import sys
 from blastradius.adapters.entire_graph import IMPACT_RELATIONS
 from blastradius.adapters.local_ast import LocalAstResolver
 from blastradius.adapters.rules import RuleBook
+from blastradius.core.evidence import BlindSpot, Provenance, Source
 from blastradius.core.graph_model import SymbolGraph
 from blastradius.core.impact import analyse
 from blastradius.render import cli_report
@@ -39,9 +40,16 @@ def build_graph(repo: str, source_root: str, use_graph: bool = True,
     as one: when the provider is missing, the report says on its face that its
     findings are single-sourced, because a partial blast radius presented as a
     complete one is the one failure this product cannot have.
+
+    The local resolver returns a third thing alongside its edges: the call sites
+    it could NOT resolve. Those are the candidate blind spots, reconciled
+    against the graph in `impact.analyse` so that only sites BOTH sources missed
+    survive. Running it even when the graph is healthy is the point -- the graph
+    cannot report an edge it never saw, so the absence has to be detected at the
+    source, not inferred from the graph's silence.
     """
     graph = SymbolGraph()
-    notes, run = [], None
+    notes, run, provider_gap = [], None, []
     src_abs = os.path.join(os.path.abspath(repo), source_root) if source_root else os.path.abspath(repo)
 
     if use_graph:
@@ -59,14 +67,48 @@ def build_graph(repo: str, source_root: str, use_graph: bool = True,
         except Exception as exc:                      # noqa: BLE001 - degrade loudly, never crash
             notes.append(f"entire-graph UNAVAILABLE ({exc}) — findings are SINGLE-SOURCED "
                          f"and must not be treated as a complete blast radius")
+            provider_gap.append(_missing_provider_spot(str(exc)))
+    else:
+        provider_gap.append(_missing_provider_spot("--offline was requested"))
 
     resolver = LocalAstResolver(src_abs)
     resolver.collect_definitions()
     local = resolver.edges()
     for edge in local:
         graph.add(edge)
-    notes.append(f"local-ast: ok — {len(local)} call edges independently derived")
-    return graph, notes, run
+    notes.append(f"local-ast: ok — {len(local)} call edges independently derived, "
+                 f"{len(resolver.blind_spots)} unresolved call site(s) recorded "
+                 f"({resolver.dropped_external} builtin/stdlib names dropped as external)")
+    return graph, notes, run, provider_gap + resolver.blind_spots
+
+
+def _missing_provider_spot(reason: str) -> BlindSpot:
+    """The absent second source, expressed as what it actually is.
+
+    Without this, `--offline` reported `completeness: complete` while
+    `single_sourced: true` sat three lines below it in the same report — two
+    fields telling a reader opposite stories, and the reassuring one printed
+    first. An analysis missing an entire evidence source has not seen
+    everything, and the honest way to say so is the mechanism already built for
+    saying so.
+
+    `routes_anywhere` is True because the hidden edges are unbounded: we cannot
+    know what the provider would have resolved that our own parser could not.
+    """
+    return BlindSpot(
+        kind="provider-unavailable",
+        symbol="<whole analysis>",
+        provenance=Provenance(
+            source=Source.LOCAL_AST, file="<no provider>", line=0,
+            confidence=0.0, resolution="unresolved",
+            detail=f"Entire Graph did not run: {reason}",
+        ),
+        detail=f"Entire Graph did not run ({reason}), so every relation it would have "
+               f"resolved and our local parser cannot is missing from this radius",
+        verify="re-run without --offline, or install the provider "
+               "(`entire plugin install graph`), so the radius has two independent sources",
+        routes_anywhere=True,
+    )
 
 
 def resolve_changed(args, repo: str, source_root: str) -> tuple:
@@ -89,10 +131,12 @@ def cmd_impact(args) -> int:
 
     changed, diff_records = resolve_changed(args, repo, source_root)
     relations = IMPACT_RELATIONS + (("DATA_FLOWS",) if args.include_data_flows else ())
-    graph, notes, run = build_graph(repo, source_root, use_graph=not args.offline,
-                                    graph_bin=args.graph_bin, relations=relations)
+    graph, notes, run, blind_spots = build_graph(
+        repo, source_root, use_graph=not args.offline,
+        graph_bin=args.graph_bin, relations=relations)
     rulebook = RuleBook.load(args.rules)
-    report = analyse(graph, rulebook, changed, max_hops=args.max_hops).to_dict()
+    report = analyse(graph, rulebook, changed, max_hops=args.max_hops,
+                     blind_spots=blind_spots).to_dict()
 
     report["provenance"] = {
         "repo": repo,
@@ -108,6 +152,8 @@ def cmd_impact(args) -> int:
         "graph_files_parsed": (run.stats or {}).get("parsed_files") if run else None,
         "graph_files_total": (run.stats or {}).get("files") if run else None,
         "single_sourced": run is None,
+        "blind_spots_found": len(blind_spots),
+        "blind_spots_in_scope": len(report["blind_spots"]),
         "notes": notes,
     }
     if diff_records:
@@ -124,6 +170,17 @@ def cmd_impact(args) -> int:
                 f"{len(report['scheduled_jobs'])} scheduled job(s) beyond that scope"
                 if surfaces or report["scheduled_jobs"] else ""
             ),
+            # Silence is not agreement. Before this, a stated intent of "nothing
+            # downstream" was CONFIRMED by an analysis that had simply failed to
+            # look -- the tool agreeing with the developer for the worst possible
+            # reason. An incomplete radius can contradict an intent but can never
+            # corroborate one.
+            "cannot_confirm": (
+                f"containment CANNOT be confirmed: {len(report['blind_spots'])} "
+                f"unresolved call site(s) mean a reachable surface may be missing "
+                f"from this radius"
+                if report["completeness"] == "partial" else ""
+            ),
         }
 
     if args.json:
@@ -131,7 +188,18 @@ def cmd_impact(args) -> int:
     else:
         print(cli_report.render(report))
 
-    return 1 if args.fail_on_critical and report["band"] in ("CRITICAL", "HIGH") else 0
+    if not args.fail_on_critical:
+        return 0
+    if report["band"] in ("CRITICAL", "HIGH"):
+        return 1
+    # A LOW band computed over an incomplete radius is not a pass, it is an
+    # unknown, and the two must not share an exit code. Exit 2 says "we could
+    # not see enough to clear this" -- distinct from 1 ("we saw enough, and it
+    # is risky") and from 0 ("clear"). --allow-partial lets a team accept the
+    # residual risk deliberately rather than by not being told about it.
+    if report["completeness"] == "partial" and not args.allow_partial:
+        return 2
+    return 0
 
 
 def main(argv=None) -> int:
@@ -158,7 +226,11 @@ def main(argv=None) -> int:
     p.add_argument("--intent", default=None,
                    help="stated intent to check the actual blast radius against")
     p.add_argument("--fail-on-critical", action="store_true",
-                   help="exit non-zero on HIGH or CRITICAL (for CI)")
+                   help="exit non-zero on HIGH or CRITICAL (for CI); also exits 2 when "
+                        "the analysis is partial, unless --allow-partial")
+    p.add_argument("--allow-partial", action="store_true",
+                   help="let the gate pass on an incomplete analysis (accepts the "
+                        "residual risk explicitly rather than silently)")
     p.set_defaults(func=cmd_impact)
 
     args = parser.parse_args(argv)

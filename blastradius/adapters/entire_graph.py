@@ -104,6 +104,17 @@ class EntireGraphUnavailable(RuntimeError):
     """The provider could not be run, or produced nothing usable."""
 
 
+class EntireGraphAmbiguousSymbol(RuntimeError):
+    """The provider declined to answer because the name matches several defs.
+
+    A refusal is not an empty answer, and the difference is the whole curveball:
+    `impact_callers` used to read `callers.entries: null` as "no callers" and
+    hand back {}. The provider was saying "ask me a more precise question"; we
+    heard "nothing depends on this". Adding a second fixture made `penal_charge`
+    ambiguous and turned that latent bug into a failing test.
+    """
+
+
 class EntireGraphSchemaMismatch(EntireGraphUnavailable):
     """The provider spoke a schema major we do not understand."""
 
@@ -413,7 +424,8 @@ class EntireGraphAdapter:
 
     # ---- the provider's own blast radius (corroboration) -----------------
 
-    def impact(self, symbol: str, depth: int = 2, limit: int = 50) -> dict:
+    def impact(self, symbol: str, depth: int = 2, limit: int = 50,
+               file: Optional[str] = None) -> dict:
         """The provider's one-shot blast radius, as a second opinion.
 
         Bounded at depth<=2 by the provider, so it cannot replace our traversal
@@ -426,6 +438,8 @@ class EntireGraphAdapter:
             "--depth", str(depth), "--limit", str(limit),
             "--format", "json", "--profile", self.profile,
         ]
+        if file:
+            args += ["--file", file]
         if self.worktree:
             args.append("--worktree")
         proc = self._run(*args)
@@ -434,8 +448,35 @@ class EntireGraphAdapter:
         return payload
 
     def impact_callers(self, symbol: str, depth: int = 2) -> dict:
-        """{dotted symbol: hop depth} from the provider's own impact command."""
+        """{dotted symbol: hop depth} from the provider's own impact command.
+
+        Honours `disambiguation_required` rather than reading past it. When the
+        name matches several definitions the provider answers with the
+        definition LIST and a null caller set; taking that at face value reports
+        "nothing depends on this" about a symbol the provider never looked at.
+        We narrow with --file to the definition inside our source root, and
+        raise if that still does not identify one.
+        """
         payload = self.impact(symbol, depth=depth)
+        if payload.get("disambiguation_required"):
+            root = (self.source_root or "").replace(os.sep, "/").strip("/")
+            candidates = [
+                d for d in (payload.get("definitions") or [])
+                if not root or (d.get("file_path") or "").replace(os.sep, "/")
+                .startswith(root + "/")
+            ]
+            if len(candidates) != 1:
+                raise EntireGraphAmbiguousSymbol(
+                    f"{symbol!r} matches {len(payload.get('definitions') or [])} "
+                    f"definitions ({len(candidates)} inside {self.source_root!r}); "
+                    f"the provider declined to answer and this is NOT an empty result"
+                )
+            payload = self.impact(symbol, depth=depth, file=candidates[0]["file_path"])
+            if payload.get("disambiguation_required"):
+                raise EntireGraphAmbiguousSymbol(
+                    f"{symbol!r} remained ambiguous after narrowing to "
+                    f"{candidates[0]['file_path']}"
+                )
         out = {}
         for entry in payload.get("callers", {}).get("entries", []) or []:
             endpoint = entry.get("endpoint", {}) or {}

@@ -1,0 +1,35 @@
+Index: cache-miss (26560ms) | Query: 4ms | Total: 26565ms
+Impact: EntireGraphAdapter.edges (blastradius/adapters/entire_graph.py:372) def=372 span=372-423 [method in EntireGraphAdapter]
+Blast radius: 5 callers (4 direct, 1 transitive), 7 callees, 0 type consumers, 0 data flows, 0 co-change files, 11 siblings.
+Callers (4 direct, 1 transitive; who breaks if behavior changes):
+- build_graph (blastradius/cli.py:59, def :27) [+1 more call site]
+- test_the_provider_finds_the_real_callers_of_penal_charge (blastradius/tests/test_entire_graph_adapter.py:161, def :159) [+1 more call site]
+- test_every_graph_edge_carries_a_clickable_citation (blastradius/tests/test_entire_graph_adapter.py:172, def :170)
+- test_our_traversal_agrees_with_the_providers_own_impact_command (blastradius/tests/test_entire_graph_adapter.py:183, def :179)
+- cmd_impact (blastradius/cli.py:134, def :128) [via build_graph]
+Callees (7; what it depends on):
+- _orient (blastradius/adapters/entire_graph.py:91)
+- EntireGraphUnavailable (blastradius/adapters/entire_graph.py:103) [CONSTRUCTS]
+- parse_symbol_id (blastradius/adapters/entire_graph.py:174)
+- symbol_id_file (blastradius/adapters/entire_graph.py:201)
+- EntireGraphAdapter._stream (blastradius/adapters/entire_graph.py:332)
+- Provenance (blastradius/core/evidence.py:85) [CONSTRUCTS]
+- Edge (blastradius/core/evidence.py:109) [CONSTRUCTS]
+Type consumers (0 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- none
+Data flows (0 in, 0 out):
+- none
+Co-change coupling (0; files that historically change with blastradius/adapters/entire_graph.py):
+- none
+Same-container siblings (11):
+- EntireGraphAdapter.__init__ (blastradius/adapters/entire_graph.py:263)
+- EntireGraphAdapter._argv (blastradius/adapters/entire_graph.py:282)
+- EntireGraphAdapter._run (blastradius/adapters/entire_graph.py:285)
+- EntireGraphAdapter._check_schema (blastradius/adapters/entire_graph.py:305)
+- EntireGraphAdapter.capabilities (blastradius/adapters/entire_graph.py:318)
+- EntireGraphAdapter.semantic_languages (blastradius/adapters/entire_graph.py:326)
+- EntireGraphAdapter._stream (blastradius/adapters/entire_graph.py:332)
+- EntireGraphAdapter.impact (blastradius/adapters/entire_graph.py:427)
+- EntireGraphAdapter.impact_callers (blastradius/adapters/entire_graph.py:450)
+- EntireGraphAdapter.changed_symbols (blastradius/adapters/entire_graph.py:491)
+- EntireGraphAdapter.raw_diff (blastradius/adapters/entire_graph.py:524)

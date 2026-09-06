@@ -3,29 +3,6 @@
   "head": "HEAD",
   "files": [
     {
-      "path": ".claude/settings.json",
-      "status": "M",
-      "language": "JSON",
-      "changes": [
-        {
-          "type": "removed",
-          "kind": "section",
-          "name": "permissions",
-          "old_signature": "json key permissions",
-          "before_start_line": 90,
-          "dependents_count": 10
-        },
-        {
-          "type": "removed",
-          "kind": "section",
-          "name": "deny",
-          "old_signature": "json key deny",
-          "before_start_line": 91,
-          "dependents_count": 12
-        }
-      ]
-    },
-    {
       "path": ".gitignore",
       "status": "M",
       "language": "Git Ignore",
@@ -131,7 +108,7 @@
           "name": "The-risk-model-blastradius/core/risk.py",
           "new_signature": "markdown heading The risk model (`blastradius/core/risk.py`)",
           "after_start_line": 104,
-          "dependents_count": 348
+          "dependents_count": 349
         },
         {
           "type": "added",
@@ -256,9 +233,9 @@
         {
           "type": "added",
           "kind": "section",
-          "name": "Setup-run-and-test-instructions",
-          "new_signature": "markdown heading Setup, run and test instructions",
-          "after_start_line": 257,
+          "name": "How-to-verify-these-yourself",
+          "new_signature": "markdown heading How to verify these yourself",
+          "after_start_line": 300,
           "dependents_count": 0
         },
         {
@@ -266,23 +243,47 @@
           "kind": "code_fence",
           "name": "code_fence_13_bash",
           "new_signature": "markdown code fence bash",
-          "after_start_line": 259,
+          "after_start_line": 302,
           "dependents_count": 0
         },
         {
           "type": "added",
           "kind": "section",
-          "name": "Entire-Graph-provider.-The-adapter-prefers-the-official-plugin-and-falls-back",
-          "new_signature": "markdown heading Entire Graph provider. The adapter prefers the official plugin and falls back",
-          "after_start_line": 262,
+          "name": "1.-live-checkpoint-count-for-the-current-branch-branch-scoped-so-read-the-branch-line",
+          "new_signature": "markdown heading 1. live checkpoint count for the current branch — branch-scoped, so read the branch line",
+          "after_start_line": 303,
           "dependents_count": 0
         },
         {
           "type": "added",
           "kind": "section",
-          "name": "to-a-locally-built-one-only-if-the-Entire-CLI-is-absent.",
-          "new_signature": "markdown heading to a locally built one only if the Entire CLI is absent.",
-          "after_start_line": 263,
+          "name": "2.-resolve-a-record-by-ID-or-via-the-commit-carrying-the-trailer",
+          "new_signature": "markdown heading 2. resolve a record, by ID or via the commit carrying the trailer",
+          "after_start_line": 307,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "3.-our-own-disclosure:-which-submission-commits-carry-a-trailer",
+          "new_signature": "markdown heading 3. our own disclosure: which submission commits carry a trailer",
+          "after_start_line": 311,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "4.-entity-level-diff-for-any-checkpoint-ID-from-git-alone-no-account-works-today",
+          "new_signature": "markdown heading 4. entity-level diff for any checkpoint ID, from git alone — no account, works today",
+          "after_start_line": 315,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "5.-the-milestone-bodies-which-need-nothing-installed-at-all",
+          "new_signature": "markdown heading 5. the milestone bodies, which need nothing installed at all",
+          "after_start_line": 318,
           "dependents_count": 0
         },
         {
@@ -290,7 +291,15 @@
           "kind": "code_fence",
           "name": "code_fence_14_text",
           "new_signature": "markdown code fence text",
-          "after_start_line": 272,
+          "after_start_line": 320,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Setup-run-and-test-instructions",
+          "new_signature": "markdown heading Setup, run and test instructions",
+          "after_start_line": 327,
           "dependents_count": 0
         },
         {
@@ -298,7 +307,23 @@
           "kind": "code_fence",
           "name": "code_fence_15_bash",
           "new_signature": "markdown code fence bash",
-          "after_start_line": 276,
+          "after_start_line": 329,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "Entire-Graph-provider.-The-adapter-prefers-the-official-plugin-and-falls-back",
+          "new_signature": "markdown heading Entire Graph provider. The adapter prefers the official plugin and falls back",
+          "after_start_line": 332,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "to-a-locally-built-one-only-if-the-Entire-CLI-is-absent.",
+          "new_signature": "markdown heading to a locally built one only if the Entire CLI is absent.",
+          "after_start_line": 333,
           "dependents_count": 0
         },
         {
@@ -306,7 +331,23 @@
           "kind": "code_fence",
           "name": "code_fence_16_text",
           "new_signature": "markdown code fence text",
-          "after_start_line": 279,
+          "after_start_line": 342,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_17_bash",
+          "new_signature": "markdown code fence bash",
+          "after_start_line": 346,
+          "dependents_count": 0
+        },
+        {
+          "type": "added",
+          "kind": "code_fence",
+          "name": "code_fence_18_text",
+          "new_signature": "markdown code fence text",
+          "after_start_line": 349,
           "dependents_count": 0
         },
         {
@@ -314,7 +355,7 @@
           "kind": "section",
           "name": "Databricks-use-data-sources-and-limitations",
           "new_signature": "markdown heading Databricks use, data sources and limitations",
-          "after_start_line": 281,
+          "after_start_line": 351,
           "dependents_count": 0
         },
         {
@@ -322,7 +363,7 @@
           "kind": "section",
           "name": "Known-limitations-and-next-steps",
           "new_signature": "markdown heading Known limitations and next steps",
-          "after_start_line": 291,
+          "after_start_line": 361,
           "dependents_count": 0
         },
         {
@@ -330,7 +371,7 @@
           "kind": "section",
           "name": "Honesty-notes",
           "new_signature": "markdown heading Honesty notes",
-          "after_start_line": 320,
+          "after_start_line": 390,
           "dependents_count": 0
         }
       ]
@@ -418,7 +459,7 @@
           "name": "demo",
           "new_signature": "make target demo",
           "after_start_line": 33,
-          "dependents_count": 39
+          "dependents_count": 41
         },
         {
           "type": "added",
@@ -943,7 +984,7 @@
           "name": "Edge.key",
           "new_signature": "def key(self) -\u003e tuple",
           "after_start_line": 72,
-          "dependents_count": 323
+          "dependents_count": 324
         },
         {
           "type": "added",
@@ -1411,7 +1452,7 @@
           "name": "base",
           "new_signature": "def base(**kw)",
           "after_start_line": 15,
-          "dependents_count": 323
+          "dependents_count": 324
         },
         {
           "type": "added",
@@ -1649,6 +1690,320 @@
           "new_signature": "markdown heading Where the seams are, if the Curveball hits the architecture",
           "after_start_line": 80,
           "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/graph-evidence/00-capabilities.json",
+      "status": "A",
+      "language": "JSON",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "docs/graph-evidence/00-capabilities.json",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/graph-evidence/03-impact-pre-change.json",
+      "status": "A",
+      "language": "JSON",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "module",
+          "name": "docs/graph-evidence/03-impact-pre-change.json",
+          "after_start_line": 1,
+          "dependents_count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/graph-evidence/06-final-semantic-diff.json",
+      "status": "A",
+      "language": "JSON",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "base",
+          "new_signature": "json key base",
+          "after_start_line": 2,
+          "dependents_count": 324
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "head",
+          "new_signature": "json key head",
+          "after_start_line": 3,
+          "dependents_count": 313
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "files",
+          "new_signature": "json key files",
+          "after_start_line": 4,
+          "dependents_count": 403
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "path",
+          "new_signature": "json key path",
+          "after_start_line": 6,
+          "dependents_count": 1178
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "status",
+          "new_signature": "json key status",
+          "after_start_line": 7,
+          "dependents_count": 217
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "language",
+          "new_signature": "json key language",
+          "after_start_line": 8,
+          "dependents_count": 331
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "changes",
+          "new_signature": "json key changes",
+          "after_start_line": 9,
+          "dependents_count": 106
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "type",
+          "new_signature": "json key type",
+          "after_start_line": 11,
+          "dependents_count": 1009
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "kind",
+          "new_signature": "json key kind",
+          "after_start_line": 12,
+          "dependents_count": 293
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "name",
+          "new_signature": "json key name",
+          "after_start_line": 13,
+          "dependents_count": 1676
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "old_signature",
+          "new_signature": "json key old_signature",
+          "after_start_line": 14,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "before_start_line",
+          "new_signature": "json key before_start_line",
+          "after_start_line": 15,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "dependents_count",
+          "new_signature": "json key dependents_count",
+          "after_start_line": 16,
+          "dependents_count": 6
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "after_start_line",
+          "new_signature": "json key after_start_line",
+          "after_start_line": 38,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "new_signature",
+          "new_signature": "json key new_signature",
+          "after_start_line": 52,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "warnings",
+          "new_signature": "json key warnings",
+          "after_start_line": 2410,
+          "dependents_count": 111
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "code",
+          "new_signature": "json key code",
+          "after_start_line": 2412,
+          "dependents_count": 194
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "severity",
+          "new_signature": "json key severity",
+          "after_start_line": 2413,
+          "dependents_count": 21
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "file_path",
+          "new_signature": "json key file_path",
+          "after_start_line": 2414,
+          "dependents_count": 72
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "effect_on_semantic_completeness",
+          "new_signature": "json key effect_on_semantic_completeness",
+          "after_start_line": 2415,
+          "dependents_count": 5
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "detail",
+          "new_signature": "json key detail",
+          "after_start_line": 2416,
+          "dependents_count": 103
+        }
+      ]
+    },
+    {
+      "path": "docs/graph-evidence/06b-semantic-diff-demo-change.json",
+      "status": "A",
+      "language": "JSON",
+      "changes": [
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "base",
+          "new_signature": "json key base",
+          "after_start_line": 2,
+          "dependents_count": 324
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "head",
+          "new_signature": "json key head",
+          "after_start_line": 3,
+          "dependents_count": 313
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "files",
+          "new_signature": "json key files",
+          "after_start_line": 4,
+          "dependents_count": 403
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "path",
+          "new_signature": "json key path",
+          "after_start_line": 6,
+          "dependents_count": 1178
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "status",
+          "new_signature": "json key status",
+          "after_start_line": 7,
+          "dependents_count": 217
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "language",
+          "new_signature": "json key language",
+          "after_start_line": 8,
+          "dependents_count": 331
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "changes",
+          "new_signature": "json key changes",
+          "after_start_line": 9,
+          "dependents_count": 106
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "type",
+          "new_signature": "json key type",
+          "after_start_line": 11,
+          "dependents_count": 1009
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "kind",
+          "new_signature": "json key kind",
+          "after_start_line": 12,
+          "dependents_count": 293
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "name",
+          "new_signature": "json key name",
+          "after_start_line": 13,
+          "dependents_count": 1676
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "before_start_line",
+          "new_signature": "json key before_start_line",
+          "after_start_line": 14,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "after_start_line",
+          "new_signature": "json key after_start_line",
+          "after_start_line": 15,
+          "dependents_count": 4
+        },
+        {
+          "type": "added",
+          "kind": "section",
+          "name": "dependents_count",
+          "new_signature": "json key dependents_count",
+          "after_start_line": 16,
+          "dependents_count": 6
         }
       ]
     },
@@ -1951,7 +2306,7 @@
           "name": "penal_charge",
           "new_signature": "def penal_charge(loan: Loan, overdue_principal, months_overdue: int) -\u003e Decimal",
           "after_start_line": 12,
-          "dependents_count": 14
+          "dependents_count": 15
         },
         {
           "type": "added",
@@ -2414,6 +2769,55 @@
       "file_path": ".graphignore",
       "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
       "detail": "base and head versions have no supported parser"
+    },
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": "docs/graph-evidence/01-search-penal-charge.txt",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "head version has no supported parser"
+    },
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": "docs/graph-evidence/02-def-penal-charge.txt",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "head version has no supported parser"
+    },
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": "docs/graph-evidence/03-impact-pre-change.txt",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "head version has no supported parser"
+    },
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": "docs/graph-evidence/03b-neighbors-callers.txt",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "head version has no supported parser"
+    },
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": "docs/graph-evidence/04-edges-calls.ndjson",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "head version has no supported parser"
+    },
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": "docs/graph-evidence/05-edges-dataflows.ndjson",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "head version has no supported parser"
+    },
+    {
+      "code": "W_UNSUPPORTED_FILE",
+      "severity": "info",
+      "file_path": "docs/graph-evidence/07-blast-radius-report.txt",
+      "effect_on_semantic_completeness": "file skipped; no parser for this file type, so its changes are not analyzed",
+      "detail": "head version has no supported parser"
     },
     {
       "code": "E_PARSE_ERROR",

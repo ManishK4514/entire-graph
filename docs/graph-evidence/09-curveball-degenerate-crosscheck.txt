@@ -1,0 +1,33 @@
+# Cross-check: 'IMPACT DEGENERATE' is not 'unused'
+# captured 2026-09-06T08:26:31Z against entire graph v0.4.0
+
+$ entire graph impact --repo . --symbol Verification --file blastradius/core/evidence.py
+Index: cache-miss (20965ms) | Query: 3ms | Total: 20969ms
+IMPACT DEGENERATE: Verification has no callers, callees or type consumers
+
+$ grep -rn "Verification\." blastradius/
+blastradius/core/graph_model.py:41:                existing.verification = Verification.VERIFIED
+blastradius/core/evidence.py:120:    verification: Verification = Verification.UNVERIFIED
+blastradius/core/evidence.py:142:        if self.verification is Verification.CONFLICT:
+blastradius/core/evidence.py:144:        if self.verification is not Verification.VERIFIED:
+blastradius/core/evidence.py:160:    verification: Verification = Verification.UNVERIFIED
+blastradius/core/evidence.py:167:            self.verification is Verification.VERIFIED
+blastradius/core/evidence.py:174:        if self.verification is Verification.VERIFIED:
+blastradius/core/evidence.py:208:    verification: Verification = Verification.UNVERIFIED
+blastradius/core/impact.py:178:                verification=proof.verification if proof else Verification.UNVERIFIED,
+blastradius/core/impact.py:222:    unverified = sum(1 for e in all_edges if e.verification is not Verification.VERIFIED)
+blastradius/core/impact.py:225:        for e in all_edges if e.verification is Verification.CONFLICT
+blastradius/tests/test_verification.py:13:    assert g.edges[0].verification is Verification.UNVERIFIED
+blastradius/tests/test_verification.py:21:    assert g.edges[0].verification is Verification.UNVERIFIED
+blastradius/tests/test_verification.py:29:    assert g.edges[0].verification is Verification.VERIFIED
+blastradius/tests/test_partial_analysis.py:356:    assert g.edges[0].verification is Verification.VERIFIED
+blastradius/tests/test_partial_analysis.py:368:    assert g.edges[0].verification is Verification.VERIFIED   # two sources, yes
+blastradius/tests/test_partial_analysis.py:413:             verification=Verification.CONFLICT)
+blastradius/tests/test_partial_analysis.py:426:                   verification=Verification.VERIFIED))
+blastradius/tests/test_partial_analysis.py:444:                   verification=Verification.VERIFIED))
+
+# The provider reports 0 callers / 0 callees / 0 type consumers for Verification.
+# grep finds the real references, including the one that gates Finding.is_assertable().
+# An enum attribute reference is not a CALLS edge, so the relation does not exist in
+# the graph. The graph is not wrong; it answered the question it was asked. We were
+# asking it a question it does not answer.

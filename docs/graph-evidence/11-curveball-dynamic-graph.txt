@@ -1,0 +1,37 @@
+# The dynamic fixture, as Entire Graph actually sees it
+# captured 2026-09-06T08:18:36Z against v0.4.0
+#
+# METHOD NOTE: this must be captured with --worktree. A first attempt without it
+# read the COMMITTED tree, where this fixture did not yet exist, and reported zero
+# relations -- a clean, confident, meaningless answer. That is the same class of
+# mistake the curveball is about, made while documenting the curveball.
+
+$ entire graph edges --repo . --relation CALLS --worktree | grep lending-platform-dynamic
+graph: 22993 edge(s) matched (--to="" --from="" --relation=CALLS)
+  12 CALLS relations touch the dynamic fixture. By resolution: {'import_external': 6, 'exact': 1, 'import_resolved': 5}
+
+  CALLS whose CALLEE is the dynamic fixture's late_payment_charge: 0
+    (none -- which is the whole point: it is reached only through the
+     CHARGE_RULES registry, and no static walk can follow that)
+
+# The claim this file exists to verify: late_payment_charge, the symbol the
+# demo reviews, has NO caller in the graph. It is reached only through the
+# CHARGE_RULES registry in disclosure/kfs.py, which no static walk can follow.
+# Blast Radius therefore reports a 0-symbol radius -- correctly -- and refuses
+# to let that read as safe.
+
+$ entire graph impact --repo . --symbol late_payment_charge --file fixtures/lending-platform-dynamic/pricing/fees.py --worktree
+Index: cache-miss (34961ms) | Query: 5ms | Total: 34967ms
+Impact: late_payment_charge (fixtures/lending-platform-dynamic/pricing/fees.py:12) def=12 span=12-18 [function]
+Blast radius: 0 callers (0 direct, 0 transitive), 2 callees, 0 type consumers, 1 data flow, 0 co-change files, 0 siblings.
+Callers (0 direct, 0 transitive; who breaks if behavior changes):
+- none
+Callees (2; what it depends on):
+- decimal.Decimal
+- round_to_paise (fixtures/lending-platform-dynamic/core/money.py:5)
+Type consumers (0 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- none
+Data flows (1 in, 0 out):
+- <- round_to_paise (fixtures/lending-platform-dynamic/core/money.py:5)
+Co-change coupling (0; files that historically change with fixtures/lending-platform-dynamic/pricing/fees.py):
+- none

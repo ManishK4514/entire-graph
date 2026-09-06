@@ -1,0 +1,19 @@
+Index: cache-miss (26666ms) | Query: 6ms | Total: 26673ms
+Impact: Finding (blastradius/core/evidence.py:154) def=154 span=154-176 [class]
+Blast radius: 4 callers (1 direct, 3 transitive), 0 callees, 0 type consumers, 0 data flows, 0 co-change files, 2 siblings.
+Callers (1 direct, 3 transitive; who breaks if behavior changes):
+- analyse (blastradius/core/impact.py:170, def :154) [CONSTRUCTS]
+- cmd_impact (blastradius/cli.py:138, def :128) [via analyse]
+- test_the_report_separates_completeness_from_the_score (blastradius/tests/test_partial_analysis.py:427, def :419) [via analyse]
+- test_a_resolved_analysis_reports_complete_and_carries_no_blind_spots (blastradius/tests/test_partial_analysis.py:445, def :437) [via analyse]
+Callees (0; what it depends on):
+- none
+Type consumers (0 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- none
+Data flows (0 in, 0 out):
+- none
+Co-change coupling (0; files that historically change with blastradius/core/evidence.py):
+- none
+Same-container siblings (2):
+- Finding.is_assertable (blastradius/core/evidence.py:164) [member]
+- Finding.tier (blastradius/core/evidence.py:171) [member]

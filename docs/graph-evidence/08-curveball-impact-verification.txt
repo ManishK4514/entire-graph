@@ -1,0 +1,2 @@
+Index: cache-miss (20965ms) | Query: 3ms | Total: 20969ms
+IMPACT DEGENERATE: Verification has no callers, callees or type consumers

@@ -143,6 +143,10 @@ Raw provider output is committed under `docs/graph-evidence/`, captured by
 | `05-edges-dataflows.ndjson` | the DATA_FLOWS stream behind the orientation finding below |
 | `06-final-semantic-diff.json` | **final semantic diff analysis of the submitted implementation** |
 | `07-blast-radius-report.txt` | the decision that evidence produced |
+| `08-curveball-impact-*.txt` | **impact analysis on all 10 evidence-consuming symbols.** The run that drove the design happened *before* any edit, as the card requires; these files are re-captured by `make evidence` against the finished code, so they stay reproducible rather than frozen. Checkpoint 3 records the pre-edit readings and the one number that moved. |
+| `09-curveball-degenerate-crosscheck.txt` | the `IMPACT DEGENERATE` result on `Verification`, cross-checked against grep |
+| `10-curveball-partial-report.txt` | the decision on a repository static analysis cannot fully resolve |
+| `11-curveball-dynamic-graph.txt` | the dynamic fixture as the provider actually sees it — verifies the "no static caller" claim |
 
 ### Finding 1 — the graph's DATA_FLOWS relation carries two opposite orientations
 
@@ -233,23 +237,211 @@ product relies on `def` / `neighbors` / `edges` for the lookups that must be pre
 
 ## Noon Curveball: what changed and how we adapted
 
-> _To be completed after 12:00. The constraint has not been received at the time of
-> writing; nothing here is pre-written._
->
-> Planned protocol: freeze and commit at 11:45 · pre-noon checkpoint · close the agent
-> session · read the card and write down "the smallest complete response is…" · start a
-> **fresh** session and make it reconstruct from the checkpoint before editing · run
-> `entire graph impact` on the affected area **before** changing it, teed to
-> `docs/graph-evidence/` · implement the smallest complete response · add a test that fails
-> on the old commit and passes on the new · checkpoint the response.
+**Track 2 — "Graph is evidence, not an oracle."** The protocol above was followed as
+written: the session that built the product was closed, and a **fresh session**
+reconstructed intent, architecture, the four invariants, completed work and open risks
+from `entire checkpoint explain c318df27e970` / `92f99349fbfe` plus
+`docs/checkpoints/02-pre-curveball-stable.md` — **before opening a single source file**.
+`entire graph impact` was then run on every evidence-consuming symbol **before any
+implementation edit**, teed into `docs/graph-evidence/08-*` and `09-*`. Full write-up:
+[`docs/checkpoints/03-curveball-response.md`](docs/checkpoints/03-curveball-response.md);
+the shipped design is in
+[`docs/checkpoints/04-final-implementation.md`](docs/checkpoints/04-final-implementation.md).
+
+### The assumption that was invalidated
+
+> **"If every file in the analysed subtree parsed cleanly, the blast radius is complete —
+> so the absence of an edge is evidence that no dependency exists."**
+
+It is written into Checkpoint 2 in as many words, and it is what the completeness line on
+every report meant: *"no parse failures; Python is analysed semantic"*. We built a careful
+mechanism to decide whether an answer could be trusted — `GraphRun.failures_in()` and
+`scope_note()` — and pointed it at **parse failure**.
+
+Parse completeness and **relation** completeness are different properties. A file can parse
+perfectly and still hide dependencies no static resolver can see: dynamic dispatch,
+reflection, decorator registries, string-keyed config, generated code. `681/681 files
+parsed` was true, and was not an answer to the question we were asking.
+
+### The proof came out of our own evidence layer
+
+```
+$ entire graph impact --repo . --symbol Verification --file blastradius/core/evidence.py
+IMPACT DEGENERATE: Verification has no callers, callees or type consumers
+```
+
+`Verification` is the enum that decides whether Blast Radius may assert a finding at all.
+`grep` finds **10** references to it, including the one on `evidence.py:90` that gates
+`Finding.is_assertable()`. The graph reports none, because an enum attribute reference is
+not a `CALLS` edge and `CALLS` is what we asked for.
+
+**The provider is not wrong** — it answered precisely the question it was asked, and even
+labelled its own answer `DEGENERATE` rather than dressing it up. The error was ours: we
+read "no edges returned" as "no dependencies exist". Captured verbatim in
+`docs/graph-evidence/08-curveball-impact-verification.txt` and
+`09-curveball-degenerate-crosscheck.txt`.
+
+A second finding came from the provider's own fields. Re-counting
+`docs/graph-evidence/04-edges-calls.ndjson` by resolution: `exact` 20, `import_resolved`
+70, `import_external` 19, **`type_inferred` 2, `name_only` 6**. Eight of those edges are
+the provider telling us it *inferred* rather than resolved — and we were treating them
+identically to an `exact` edge when deciding what to assert. It was more honest about its
+uncertainty than we were.
+
+### Why this was dangerous, not merely untidy
+
+Every term in `risk.py` counts something **found** — surfaces, jobs, callers. Nothing
+counted what could not be resolved. So a missing edge does not lower confidence in the
+score; it silently lowers **the score itself**, and `make gate` then exits `0`. Incomplete
+analysis rendered as *"safe to merge"* — the one failure mode Checkpoint 1 named as the
+most dangerous this product could have.
+
+And invariant 3 had an asymmetry we had never written down: two independent derivations can
+confirm an edge that **exists**; they cannot confirm one is **absent**. Our second source is
+blind in the same places as the first — `_resolve()` in `local_ast.py` dropped every name it
+could not tie to a definition, silently. Two blind sources agreeing on a blind spot is not
+corroboration.
+
+### The correction
+
+> **Absence of evidence is not evidence of absence. A blast radius is a lower bound, not a
+> set — and where the analysis is blind, the tool must say where, and must not let a
+> confident-looking LOW pass a merge gate.**
+
+The report gained a **completeness axis orthogonal to the score**. `risk.py` gained no
+points and no weights: inventing risk for an unresolved site would be the inflated-
+`DATA_FLOWS` mistake of Finding 1 in the other direction. The number is unchanged; what
+changed is that the report now states what the number is a score **of**.
+
+| Seam | Change |
+| --- | --- |
+| `core/evidence.py` | `BlindSpot` type, `Tier` and `Completeness` enums, `tier()` on `Edge`/`Finding` |
+| `adapters/local_ast.py` | records the call sites it drops, classified, with a `verify` action each |
+| `core/impact.py` | `reconcile_blind_spots()` — a site only ONE source is blind to is not a blind spot; `scope_blind_spots()` |
+| `core/risk.py` | a **zero-contribution** term + `score_is_floor`; arithmetic untouched |
+| `cli.py` | `--allow-partial`; gate **exit 2** = "could not see enough to clear"; intent can no longer be *confirmed* by silence |
+| `render/cli_report.py` | three evidence tiers, blind-spot section, verification path |
+
+### The three tiers, so a reader can tell claims apart
+
+| Tier | Means |
+| --- | --- |
+| **confirmed** | corroborated by two sources **and** structurally resolved (`exact` / `import_resolved`) |
+| **heuristic** | single-sourced, **or** inferred by its own source (`name_only`, `type_inferred`, `ast_name_only`) |
+| **needs verification** | conflicts, RBI rules carrying a `verify` note, and every blind spot |
+
+Corroboration alone is deliberately not sufficient for `confirmed`: both our resolvers have
+a bare-name fallback, so two name-guessers agreeing is two guesses. That is
+`test_the_same_source_twice_is_not_verification` applied to resolution quality instead of to
+source identity.
+
+### The fixture, and what it demonstrates
+
+`fixtures/lending-platform-dynamic/` — synthetic, like the first one. Registry dispatch in
+`disclosure/kfs.py` (`CHARGE_RULES[code](loan)`), reflection in `jobs/daily_kfs_batch.py`
+(`importlib.import_module` + `getattr`), and a generated module in `reporting/rbi_return.py`.
+Every file parses cleanly.
+
+In it, `pricing.fees.late_payment_charge` has **no static caller at all** — confirmed
+against the live provider, not asserted (`docs/graph-evidence/11-curveball-dynamic-graph.txt`),
+and pinned by a test that fails if a static walk ever does find one, so the fixture cannot
+silently stop demonstrating anything. It nevertheless feeds the Key Fact Statement on every
+loan, through `CHARGE_RULES`.
+
+```
+  BLAST RADIUS: LOW    score 15/100  PARTIAL ANALYSIS — score is a FLOOR
+
+analysis blind spots (static analysis could not resolve these)
+  ?? dynamic-dispatch  in disclosure.kfs.render_kfs_document
+     at: disclosure/kfs.py:25
+     VERIFY: open disclosure/kfs.py:25, enumerate the dispatch table, and re-run
+             `blast impact --symbol <target>` for each entry it can hold
+  ?? missing-module    in reporting.rbi_return.<module>     at: reporting/rbi_return.py:7
+  ?? reflection        in jobs.daily_kfs_batch.run_batch    at: jobs/daily_kfs_batch.py:14
+  ?? reflection        in jobs.daily_kfs_batch.run_batch    at: jobs/daily_kfs_batch.py:15
+  ?? dynamic-dispatch  in jobs.daily_kfs_batch.run_batch    at: jobs/daily_kfs_batch.py:16
+
+blast radius: 0 symbols
+
+intent check
+  stated:  adjust penal charge rounding; nothing downstream
+  UNKNOWN: containment CANNOT be confirmed: 5 unresolved call site(s) mean a reachable
+           surface may be missing from this radius
+```
+
+`make gate-partial` → **exit 2**. Before this change the same repository produced a LOW band
+and exit 0.
+
+### A bug this work found in our own adapter
+
+Adding the second fixture made `penal_charge` ambiguous across two files. The provider
+correctly refused to answer, returning `disambiguation_required: true` with
+`callers.entries: null`. `impact_callers()` read that as **"nothing depends on this."**
+
+The same bug class as the curveball, in our own code: a refusal treated as an answer of
+zero. It now honours the flag, narrows with `--file` to the definition inside the source
+root, and raises `EntireGraphAmbiguousSymbol` otherwise. It was caught by an existing test
+going red.
+
+**And that same collision produced false edges — which the provider labelled honestly.**
+Two sibling fixtures defining `penal_charge`, `to_money`, `generate_kfs` and four other
+names made `entire graph edges --relation CALLS --worktree` emit cross-directory
+`name_only` relations, including CALLS into the *dynamic* fixture's `penal_charge` whose
+callers lived in the *original* one. They were not real edges — but `name_only`
+(confidence 0.68) is the weakest resolution the provider emits and means "matched on the
+identifier alone". **It told us it was guessing.** Under the new tiering those edges are
+`heuristic`, never `confirmed`, on the strength of the provider's own `resolution` field —
+which is precisely the flattening this curveball caught.
+
+The collision also degraded the *original* demo: it lost a corroborated caller and its
+`unverified_count` went 0 → 1. So the dynamic fixture's symbols were **renamed**
+(`late_payment_charge`, `round_to_paise`, `render_kfs_document`, …) and the two trees no
+longer share a single symbol name. Its demonstration never depended on rulebook matches —
+its radius is empty by design — so this cost nothing, and `unverified_count` is 0 again.
+
+Two defences that were load-bearing throughout are now tested rather than assumed:
+`parse_symbol_id()` and `_module_of()` map every endpoint through the configured
+`--source-root` and **drop anything outside it**, which is why a second opinion can never
+corroborate against a same-named function in another directory
+(`test_impact_callers_never_leaks_a_symbol_from_outside_the_source_root`).
+
+The episode is kept in the record because it is the curveball's own thesis once more: **the
+graph's answer changed because the repository changed around it, not because the code under
+review did.**
+
+*Method note, recorded because it is the same mistake in miniature:* the first capture of
+`docs/graph-evidence/11-curveball-dynamic-graph.txt` ran `edges` **without `--worktree`**,
+against the committed tree where the fixture did not yet exist, and returned zero relations
+— a clean, confident, meaningless answer that was briefly written up as a finding. It is
+corrected in the file, and the note is kept there rather than quietly dropped.
+
+### Why the new result is safe
+
+- **Fully resolved code is untouched.** The three demo bands reproduce exactly — LOW 3/100
+  (3 symbols), HIGH 52/100 (16), CRITICAL 100/100 (24), all `completeness: complete`. The
+  original fixture contains no dynamic dispatch, and its two candidate blind spots are
+  reconciled away because Entire Graph resolves them (`type_inferred`).
+- **Under-reporting can no longer read as safety.** An empty radius now blocks the gate and
+  names every site it could not see, with an action for each.
+- **Nothing is asserted that we cannot stand behind.** Every blind spot carries provenance
+  and a verification action; the heuristic tier is separated from the confirmed one using
+  the provider's own `resolution` field.
+
+Tests: **41 new** in `blastradius/tests/test_partial_analysis.py`, covering the detector's
+false positives and negatives, reconciliation, scoping, the unchanged arithmetic, the tier
+rules, the gate exit codes, the offline path and the intent overlay — plus 2 fixture tests
+that execute the dynamic route static analysis cannot see.
+
+`make test` now runs **95**: 72 product (31 before the curveball, 41 new), 21 in the
+original fixture, 2 in the dynamic one. All pass.
 
 ## Checkpoint links and what each checkpoint proves
 
 > _"Link" is the wrong word for what Entire CLI 0.10.5 offers and this section does not
 > pretend otherwise: there is no `open`, `browse` or `url` verb, and `origin` is an
 > `entire://` transport a browser cannot resolve. A checkpoint reference here is a command
-> run against an ID. Milestones 3 and 4 are commitments, not findings — the Curveball card
-> arrives at 12:00._
+> run against an ID. Milestones 3 and 4 are now written; their IDs are filled in below from
+> `entire checkpoint list` after the commit that mints them, never typed by hand._
 
 **Why a checkpoint ID is evidence and not a self-report.** Entire's git hooks write it, not
 this document: a commit made while an agent session is bound to this worktree carries an
@@ -272,8 +464,8 @@ provider — but citing one as Blast Radius evidence would be a false claim.
 | --- | --- | --- | --- |
 | 1 | Initial understanding and intended architecture | written | the four invariants were chosen up front, not rationalised afterwards |
 | 2 | Last stable state before the Noon Curveball | written | a runnable product existed before the constraint arrived |
-| 3 | Response to the Noon Curveball | not yet | a fresh session reconstructed the project from checkpoint context and changed a real decision |
-| 4 | Final implementation and verification | not yet | what shipped, what was verified, and what remains unverified |
+| 3 | Response to the Noon Curveball | written | a fresh session reconstructed the project from checkpoint context and changed a real decision |
+| 4 | Final implementation and verification | written | what shipped, what was verified, and what remains unverified |
 
 **What backs each row.** The written body is an ordinary file in the repo — no CLI, no
 account and no network needed to read it. The ID column is filled only from
@@ -283,8 +475,10 @@ account and no network needed to read it. The ID column is filled only from
 | --- | --- | --- | --- |
 | 1 | `docs/checkpoints/01-initial-understanding.md` | `8d48561`, tagged `demo-before` | none — predates the session |
 | 2 | `docs/checkpoints/02-pre-curveball-stable.md` | `dc5b070`, on `origin/blast-radius` | none — predates the session |
-| 3 | not written — the card arrives at 12:00 | pending | pending |
-| 4 | not written — depends on milestone 3 | pending | pending |
+| 3 | `docs/checkpoints/03-curveball-response.md` | see below | see below |
+| 4 | `docs/checkpoints/04-final-implementation.md` | see below | see below |
+
+<!-- CHECKPOINT-ATTRIBUTION -->
 
 **The first checkpoint this repository has ever recorded is `92f99349fbfe`**, minted by the
 commit that added this section (`09512de`). It is the worked example of the paragraph above:
@@ -334,10 +528,12 @@ this section is the thing to distrust.
 entire plugin install graph && entire graph version      # official plugin (v0.4.0)
 make graph-bin                     # fallback: build from this fork (Go 1.26+)
 
-make test                  # 31 product tests + 21 fixture tests
+make test                  # 72 product tests + 21 + 2 fixture tests
 make demo                  # the three bands, green -> amber -> red
 make demo-diff             # review a committed change from its semantic diff
+make demo-partial          # the curveball case: a repo static analysis cannot resolve
 make gate                  # merge gate: exits non-zero on HIGH/CRITICAL
+make gate-partial          # the same gate on the unresolvable repo -> exit 2, not 0
 make evidence              # re-capture docs/graph-evidence/ from the live provider
 ```
 
@@ -361,6 +557,11 @@ verification and render as such.
 ## Known limitations and next steps
 
 **Limitations, stated plainly:**
+
+- **The blind-spot detector is a lower bound, not a complete list.** It catches the dispatch
+  patterns it knows about. `completeness: complete` means "no blind spot was detected",
+  which is a weaker claim than "there are none" — and after the curveball, that distinction
+  is exactly the one this product exists to make.
 
 - The rulebook maps obligations to **module and symbol names**. Rename `disclosure/kfs.py`
   without updating the YAML and the surface silently stops matching. A rule that matches

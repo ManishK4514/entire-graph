@@ -73,13 +73,25 @@ blast radius: 24 symbols
 run these tests
   pytest tests/test_dunning.py::test_overdue_total_includes_penal_charges tests/test_dunning.py::test_reminder_mentions_the_borrower tests/test_fees.py::test_penal_charge_compounds_across_months tests/test_kfs.py::test_kfs_carries_amortisation_schedule tests/test_kfs.py::test_kfs_discloses_a_penal_charge_illustration tests/test_kfs.py::test_kfs_discloses_all_inclusive_apr tests/test_kfs.py::test_kfs_states_penal_rate_annually tests/test_kfs.py::test_kfs_text_names_the_amount_the_borrower_receives tests/test_kfs.py::test_sanction_letter_charges_match_kfs tests/test_schedule.py::test_overdue_projection_exceeds_plain_instalments
 
+verification path (what would settle what we cannot assert)
+  - unverified regulatory claim: reaches regulated surface: bureau-reporting
+    -> Confirm the accuracy/rectification obligation wording.
+  - unverified regulatory claim: reaches regulated surface: regulatory-return
+    -> Confirm the exact return and reconciliation obligation for the entity type before citing this in the demo.
+
 evidence
   sources:  entire-graph, local-ast
-  provider: entire-graph v0.4.0 (schema 1.1) @ 8d4856127106
+  confirmed:           25  corroborated by two sources and structurally resolved
+  heuristic:            1  single-sourced, or inferred by its source (name/type match)
+  needs verification:   2  must be settled against source or a test
+  provider: entire-graph v0.4.0 (schema 1.1) @ 35d67b6951dc
   command:  entire graph edges --repo /Users/manishk4514/Documents/Personal/Hackathon test/entire-graph --profile full --worktree --relation CALLS
-  parsed:   681/681 files
+  parsed:   699/699 files
   scope:    no parse failures; Python is analysed semantic
-  all 24 reached symbol(s) independently derived by both sources
+  every one of the 24 reached symbol(s) was derived independently by both sources
+  2 unresolved call site(s) were resolved by another source and dismissed:
+      disclosure/kfs.py:37 — entire-graph resolved core.loan.Loan.net_disbursal (type_inferred)
+      pricing/interest.py:24 — entire-graph resolved core.loan.Loan.net_disbursal (type_inferred)
 
 intent check
   stated:  refactor penal charge rounding only, no downstream change

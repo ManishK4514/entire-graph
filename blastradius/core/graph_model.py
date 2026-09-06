@@ -34,6 +34,10 @@ class SymbolGraph:
                 return
             if edge.provenance.source not in existing.corroborated_by:
                 existing.corroborated_by.append(edge.provenance.source)
+                # Keep HOW the corroborator resolved it, not just that it did.
+                # Discarding this was what let one good derivation plus one
+                # bare-name guess read as two independent confirmations.
+                existing.corroborated_resolutions.append(edge.provenance.resolution)
                 existing.verification = Verification.VERIFIED
             return
         self._seen.add(edge.key())
@@ -49,6 +53,9 @@ class SymbolGraph:
 
     def callers_of(self, symbol: str) -> list:
         return self._reverse.get(symbol, [])
+
+    def callees_of(self, symbol: str) -> list:
+        return self._forward.get(symbol, [])
 
     def symbols(self) -> set:
         return set(self._forward) | set(self._reverse)

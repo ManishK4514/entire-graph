@@ -1,0 +1,29 @@
+Index: cache-miss (26339ms) | Query: 5ms | Total: 26344ms
+Impact: EntireGraphAdapter.changed_symbols (blastradius/adapters/entire_graph.py:491) def=491 span=491-522 [method in EntireGraphAdapter]
+Blast radius: 2 callers (1 direct, 1 transitive), 4 callees, 0 type consumers, 0 data flows, 0 co-change files, 11 siblings.
+Callers (1 direct, 1 transitive; who breaks if behavior changes):
+- resolve_changed (blastradius/cli.py:120, def :114)
+- cmd_impact (blastradius/cli.py:132, def :128) [via resolve_changed]
+Callees (4; what it depends on):
+- json.loads
+- _module_of (blastradius/adapters/entire_graph.py:155)
+- EntireGraphAdapter._run (blastradius/adapters/entire_graph.py:285)
+- EntireGraphAdapter._check_schema (blastradius/adapters/entire_graph.py:305)
+Type consumers (0 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- none
+Data flows (0 in, 0 out):
+- none
+Co-change coupling (0; files that historically change with blastradius/adapters/entire_graph.py):
+- none
+Same-container siblings (11):
+- EntireGraphAdapter.__init__ (blastradius/adapters/entire_graph.py:263)
+- EntireGraphAdapter._argv (blastradius/adapters/entire_graph.py:282)
+- EntireGraphAdapter._run (blastradius/adapters/entire_graph.py:285)
+- EntireGraphAdapter._check_schema (blastradius/adapters/entire_graph.py:305)
+- EntireGraphAdapter.capabilities (blastradius/adapters/entire_graph.py:318)
+- EntireGraphAdapter.semantic_languages (blastradius/adapters/entire_graph.py:326)
+- EntireGraphAdapter._stream (blastradius/adapters/entire_graph.py:332)
+- EntireGraphAdapter.edges (blastradius/adapters/entire_graph.py:372)
+- EntireGraphAdapter.impact (blastradius/adapters/entire_graph.py:427)
+- EntireGraphAdapter.impact_callers (blastradius/adapters/entire_graph.py:450)
+- EntireGraphAdapter.raw_diff (blastradius/adapters/entire_graph.py:524)

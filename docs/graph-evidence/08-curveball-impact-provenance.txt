@@ -1,0 +1,32 @@
+Index: cache-miss (22051ms) | Query: 5ms | Total: 22056ms
+Impact: Provenance (blastradius/core/evidence.py:85) def=85 span=85-105 [class]
+Blast radius: 40 callers (21 direct, 19 transitive), 0 callees, 2 type consumers, 2 data flows, 0 co-change files, 1 sibling.
+Callers (21 direct, 19 transitive; who breaks if behavior changes):
+- EntireGraphAdapter.edges (blastradius/adapters/entire_graph.py:408, def :372) [CONSTRUCTS]
+- LocalAstResolver.edges (blastradius/adapters/local_ast.py:128, def :97) [+1 more call site, CONSTRUCTS]
+- LocalAstResolver._spot (blastradius/adapters/local_ast.py:197, def :192) [CONSTRUCTS]
+- RuleBook.provenance (blastradius/adapters/rules.py:82, def :81) [CONSTRUCTS]
+- _missing_provider_spot (blastradius/cli.py:101, def :85) [CONSTRUCTS]
+- spot (blastradius/tests/test_partial_analysis.py:34, def :31) [CONSTRUCTS]
+- test_the_fully_resolved_fixture_reports_no_unreconciled_blind_spots (blastradius/tests/test_partial_analysis.py:76, def :69) [+1 more call site, CONSTRUCTS]
+- test_a_site_the_graph_resolved_is_not_a_blind_spot (blastradius/tests/test_partial_analysis.py:210, def :207) [CONSTRUCTS]
+- test_reconciliation_requires_the_same_file_not_just_the_same_name (blastradius/tests/test_partial_analysis.py:224, def :218) [CONSTRUCTS]
+- test_a_dismissed_blind_spot_is_recorded_not_discarded (blastradius/tests/test_partial_analysis.py:235, def :231) [CONSTRUCTS]
+- test_our_own_source_cannot_reconcile_its_own_blind_spot (blastradius/tests/test_partial_analysis.py:246, def :242) [CONSTRUCTS]
+- test_runtime_dispatch_can_never_be_reconciled_away (blastradius/tests/test_partial_analysis.py:256, def :253) [CONSTRUCTS]
+- test_a_corroborated_structural_edge_is_confirmed (blastradius/tests/test_partial_analysis.py:353, def :349) [+1 more call site, CONSTRUCTS]
+- test_a_structural_edge_corroborated_only_by_a_name_guess_is_not_confirmed (blastradius/tests/test_partial_analysis.py:365, def :360) [+1 more call site, CONSTRUCTS]
+- test_an_unrecognised_resolution_fails_closed_to_heuristic (blastradius/tests/test_partial_analysis.py:377, def :372) [+1 more call site, CONSTRUCTS]
+- ... +25 more (use --format json for the full list)
+Callees (0; what it depends on):
+- none
+Type consumers (2 in, 0 out; USES_TYPE/PARAM_TYPE/RETURNS_TYPE):
+- <- RuleBook.provenance (blastradius/adapters/rules.py:81) [RETURNS_TYPE]
+- <- RuleBook.provenance (blastradius/adapters/rules.py:81) [USES_TYPE]
+Data flows (1 in, 1 out):
+- -> RuleBook.provenance (blastradius/adapters/rules.py:81)
+- <- edge (blastradius/tests/test_verification.py:6)
+Co-change coupling (0; files that historically change with blastradius/core/evidence.py):
+- none
+Same-container siblings (1):
+- Provenance.location (blastradius/core/evidence.py:102) [member]

@@ -6,6 +6,16 @@ is a pure function of both. Same input, same score, every run — which is why i
 can sit in a merge gate.
 
 Every term is recorded with its contribution so the report can show its work.
+
+The Noon Curveball did NOT change the arithmetic, and that is a deliberate
+choice rather than an omission. An unresolved dispatch site is not evidence of
+risk -- inventing points for it would be the same sin as the inflated
+DATA_FLOWS radius we rejected in Checkpoint 2, just in the other direction.
+What it changes is the STANDING of the number: every term here counts something
+FOUND, so anything unfound can only push the score down. A score computed over
+an incomplete radius is therefore a FLOOR, and the result says so on a separate
+field. Same inputs, same score, still a pure function -- now with an honest
+statement of what it is a score OF.
 """
 from __future__ import annotations
 
@@ -35,9 +45,15 @@ class RiskResult:
     score: int
     band: str
     terms: list = field(default_factory=list)
+    completeness: str = "complete"
+    score_is_floor: bool = False
 
     def explain(self) -> list:
         return [(t.name, t.contribution, t.because) for t in self.terms]
+
+    def headline(self) -> str:
+        """What may be printed next to the number, never the number alone."""
+        return f"{self.band} (PARTIAL ANALYSIS)" if self.score_is_floor else self.band
 
 
 def band_for(score: int) -> str:
@@ -56,6 +72,7 @@ def score_change(
     deeper_symbols: list,
     changed_symbols_without_tests: list,
     all_surfaces_have_tests: bool,
+    blind_spots: list = (),
 ) -> RiskResult:
     terms = []
 
@@ -99,6 +116,25 @@ def score_change(
             "every reached regulated surface has test coverage", [],
         ))
 
+    # Contribution ZERO, and recorded as a term anyway. It appears in "why this
+    # score" precisely because it is the one line there that explains what the
+    # score cannot account for -- and a reader who scans the terms is exactly
+    # the reader who must not miss it.
+    if blind_spots:
+        kinds = sorted({s.kind for s in blind_spots})
+        terms.append(Term(
+            "analysis-incomplete", 0,
+            f"{len(blind_spots)} unresolved site(s) in scope ({', '.join(kinds)}) — "
+            f"every term above counts something FOUND, so this score is a FLOOR",
+            [f"{s.symbol} @ {s.provenance.location()}" for s in blind_spots][:8],
+        ))
+
     raw = sum(t.contribution for t in terms)
     score = max(0, min(100, raw))
-    return RiskResult(score=score, band=band_for(score), terms=terms)
+    return RiskResult(
+        score=score,
+        band=band_for(score),
+        terms=terms,
+        completeness="partial" if blind_spots else "complete",
+        score_is_floor=bool(blind_spots),
+    )
